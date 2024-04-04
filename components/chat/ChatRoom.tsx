@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import InputControl from "./InputControl";
 import ChatHistory from "./ChatHistory";
 import { ChatResponse } from "@/constants";
+import { useMeimei } from "@/context/MeimeiProvider";
 
 const systemPrompt = {
   role: "system",
@@ -16,6 +17,7 @@ const ChatRoom = () => {
   const [response, setResponse] = useState<ChatResponse | null>(null)
   const [loadingResponse, setLoadingResponse] = useState(false)
   const [prompt, setPrompt] = useState("");
+  const { mood, setMood } = useMeimei()
 
   // once user click the send btn, add user input to chat history
   const handleUserInput = useCallback(async (prompt: string) => {
@@ -40,8 +42,10 @@ const ChatRoom = () => {
     if (response) {
       setChatHistory((prev) => [...prev, response])
       setLoadingResponse(false)
+      setMood(`${mood === "peaceful" ? 'closing' : 'peaceful'}`)
     }
-  }, [response])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [response, setMood])
 
   return (
     <section className="flex size-full flex-col gap-y-4 px-4">

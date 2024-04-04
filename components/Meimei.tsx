@@ -2,10 +2,12 @@
 
 import { useState, useRef, useEffect } from "react"
 import { dancingGirl, amikoUpperbody, amikoWholebody } from "@/constants/constants"
+import { useMeimei } from "@/context/MeimeiProvider"
 
 const Meimei = () => {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [videoSrc, setVideoSrc] = useState(amikoUpperbody)
+  const [videoSrc, setVideoSrc] = useState(amikoWholebody)
+  const { mood } = useMeimei()
 
   const handleMouseMove = () => {
     if (videoRef.current) {
@@ -19,6 +21,14 @@ const Meimei = () => {
       window.removeEventListener("mousedown", handleMouseMove)
     }
   }, [])
+
+  useEffect(() => {
+    if (mood === "closing") {
+      setVideoSrc(amikoUpperbody)
+    } else if (mood === "peaceful") {
+      setVideoSrc(amikoWholebody)
+    }
+  }, [mood])
 
   return (
     <div className="fixed left-0 top-0 -z-50 size-full overflow-hidden">
