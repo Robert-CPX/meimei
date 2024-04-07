@@ -1,4 +1,4 @@
-import Meimei from "@/components/Meimei"
+import Meimei from "@/components/shared/Meimei"
 
 export default function Layout({
   children,

@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { ChatResponse } from "../../constants";
-import CursorSVG from "../icons/CursorSVG";
+import { ChatResponse } from "../../../constants";
+import CursorSVG from "../../icons/CursorSVG";
 
 type ChatHistoryProps = {
   chatHistory: ChatResponse[];

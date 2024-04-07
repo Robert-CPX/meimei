@@ -1,6 +1,6 @@
 "use client"
 import { FormEvent } from "react";
-import UpRightSVG from "../icons/UpRightSVG";
+import UpRightSVG from "../../icons/UpRightSVG";
 
 type InputControlProps = {
   prompt: string;

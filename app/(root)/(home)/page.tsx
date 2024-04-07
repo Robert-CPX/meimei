@@ -1,5 +1,5 @@
-import ModeMenu from "@/components/ModeMenu"
-import ChatRoom from "@/components/chat/ChatRoom"
+import ModeMenu from "@/components/shared/ModeMenu"
+import ChatRoom from "@/components/shared/chat/ChatRoom"
 
 const Home = () => {
   return (

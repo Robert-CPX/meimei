@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { dancingGirl, amikoUpperbody, amikoWholebody } from "@/constants/constants"
+import { amikoUpperbody, amikoWholebody } from "@/constants/constants"
 import { useMeimei } from "@/context/MeimeiProvider"
 
 const Meimei = () => {
