@@ -9,6 +9,7 @@ export const config = {
 
 // Clerk auth middleware
 export default authMiddleware({
+  publicRoutes: ["/api/webhooks(.*)"],
   ignoredRoutes: [
     '/api/chatgpt',
   ],
