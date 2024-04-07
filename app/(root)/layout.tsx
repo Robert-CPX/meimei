@@ -1,4 +1,4 @@
-import Meimei from "@/components/shared/Meimei"
+import MeimeiProvider from "@/context/MeimeiProvider";
 
 export default function Layout({
   children,
@@ -6,9 +6,8 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="relative h-full">
-      <Meimei />
-      {children}
+    <main className="relative h-screen">
+      <MeimeiProvider>{children}</MeimeiProvider>
     </main>
   );
 }
