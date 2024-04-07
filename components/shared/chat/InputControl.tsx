@@ -1,6 +1,5 @@
 "use client"
 import { FormEvent } from "react";
-import UpRightSVG from "../../icons/UpRightSVG";
 
 type InputControlProps = {
   prompt: string;
@@ -22,23 +21,16 @@ const InputControl = ({
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex space-x-2">
+    <form onSubmit={onSubmit} className="flex">
       <div className="grow">
         <input
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           type="text"
-          placeholder="Type here"
-          className="input w-full"
+          placeholder="Tell me about you today"
+          className="input h-[50px] w-full rounded-[25px] bg-[#333333] text-white opacity-50 placeholder:text-opacity-40"
         />
       </div>
-      <button
-        type="submit"
-        disabled={!prompt || loading}
-        className={`btn btn-ghost ${loading && "loading"}`}
-      >
-        {!loading && <UpRightSVG />}
-      </button>
     </form>
   )
 }

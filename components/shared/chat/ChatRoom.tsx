@@ -48,7 +48,7 @@ const ChatRoom = () => {
   }, [response, setMood])
 
   return (
-    <section className="flex size-full flex-col gap-y-4 px-4">
+    <section className="flex size-full flex-col gap-y-4 px-4 pb-4">
       <div className="grow overflow-y-auto">
         <ChatHistory chatHistory={chatHistory} />
       </div>

@@ -12,3 +12,9 @@ export const amikoUpperbody = {
   label: "amiko upperbody",
   src: "/assets/videos/amiko_upperbody.mp4"
 }
+
+export const Modes = [
+  { name: "FOCUS", route: "/" },
+  { name: "COMPANION", route: "/" },
+  { name: "HISTORY", route: "/" },
+]
