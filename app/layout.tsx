@@ -18,7 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ClerkProvider>
+        <ClerkProvider appearance={{
+          variables: {
+            colorPrimary: "#FFD28E",
+          }
+        }}>
           {children}
         </ClerkProvider>
       </body>
