@@ -35,14 +35,14 @@ const ChatHistory = ({ chatHistory }: ChatHistoryProps) => {
         <div key={index}>
           {index === chatHistory.length - 1 ? (
             <div className="chat chat-start">
-              <span className="chat-bubble whitespace-pre-line bg-[#333333] text-white opacity-50">
+              <span className="chat-bubble whitespace-pre-line bg-[#333333] text-white opacity-50 before:!content-none">
                 {displayResponse}
                 {!completedTyping && <CursorSVG />}
               </span>
             </div>
           ) : (
             <div className={`chat ${message.role === "user" ? "chat-end" : "chat-start"}`}>
-              <span className="chat-bubble whitespace-pre-line bg-[#333333] text-white opacity-50">{message.content}</span>
+              <span className="chat-bubble whitespace-pre-line bg-[#333333] text-white opacity-50 before:!content-none">{message.content}</span>
             </div>
           )}
         </div>
