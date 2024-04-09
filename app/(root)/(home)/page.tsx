@@ -6,12 +6,14 @@ const Home = () => {
   return (
     <>
       <Meimei />
-      <section className="flex size-full flex-col gap-4 py-4">
+      <section className="flex size-full flex-col justify-between gap-4 py-4">
         <nav className="flex-center">
           <ModeMenu />
         </nav>
-        <ChatRoom />
-        <div className="fixed right-3 top-4 z-50">
+        <section className="flex h-4/5 w-full">
+          <ChatRoom />
+        </section>
+        <div className="absolute right-3 top-4 z-50">
           <ActionMenu />
         </div>
       </section>
