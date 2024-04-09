@@ -33,7 +33,7 @@ const ChatHistory = ({ chatHistory }: ChatHistoryProps) => {
     <div className="max-h-0">
       {chatHistory.map((message, index) => (
         <div key={index}>
-          {index === chatHistory.length - 1 ? (
+          {(index === chatHistory.length - 1 && message.role !== "user") ? (
             <div className="chat chat-start">
               <span className="chat-bubble whitespace-pre-line bg-[#333333] text-white opacity-50 before:!content-none">
                 {displayResponse}

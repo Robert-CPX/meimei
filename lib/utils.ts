@@ -14,3 +14,5 @@ export const handleError = (error: unknown) => {
     throw new Error(`Unknown error: ${JSON.stringify(error)}`);
   }
 };
+
+export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));

@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server"
+import { sleep } from "@/lib/utils"
 
 export async function POST(req: Request) {
+  await sleep(1000)
   return NextResponse.json({
     message: {
       role: "assistant",
-      content: "Sorry, I'm too hungry to answer your question."
+      content: "Sorry, I need to connect to the internet before I answer your question"
     }
   }, {
     status: 200
