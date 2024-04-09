@@ -1,12 +1,12 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { amikoUpperbody, amikoWholebody } from "@/constants/constants"
+import { meimei_0, meimei_1 } from "@/constants/constants"
 import { useMeimei } from "@/context/MeimeiProvider"
 
 const Meimei = () => {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [videoSrc, setVideoSrc] = useState(amikoWholebody)
+  const [videoSrc, setVideoSrc] = useState(meimei_0)
   const { mood } = useMeimei()
 
   const handleMouseMove = () => {
@@ -24,9 +24,9 @@ const Meimei = () => {
 
   useEffect(() => {
     if (mood === "closing") {
-      setVideoSrc(amikoUpperbody)
+      setVideoSrc(meimei_1)
     } else if (mood === "peaceful") {
-      setVideoSrc(amikoWholebody)
+      setVideoSrc(meimei_0)
     }
   }, [mood])
 
