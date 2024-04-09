@@ -25,7 +25,7 @@ const ChatRoom = () => {
     setChatHistory((prev) => [...prev, { role: "user", content: prompt }])
     try {
       setLoadingResponse(true)
-      const response = await fetch(`${process.env.DOMAIN_URL}/api/chatgpt`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/chatgpt`, {
         method: 'POST',
         body: JSON.stringify(chatHistory),
       })
