@@ -1,5 +1,6 @@
 "use client"
 import { FormEvent, useEffect, useRef } from "react";
+import UpRightSVG from "../../icons/UpRightSVG";
 
 type InputControlProps = {
   prompt: string;
@@ -29,16 +30,23 @@ const InputControl = ({
   }, [prompt])
 
   return (
-    <form onSubmit={onSubmit} className="flex">
+    <form onSubmit={onSubmit} className="flex items-end gap-2">
       <div className="grow">
         <textarea
           ref={textareaRef}
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Tell me about you today"
-          className="no-scrollbar textarea h-12 w-full rounded-[25px] bg-[#333333] text-white opacity-50 placeholder:text-opacity-40"
+          className="no-scrollbar textarea block h-12 w-full rounded-[25px] bg-[#333333] text-white opacity-50 placeholder:text-opacity-40"
         />
       </div>
+      <button
+        type="submit"
+        disabled={!prompt || loading}
+        className={`btn btn-ghost ${loading && "loading"}`}
+      >
+        {!loading && <UpRightSVG />}
+      </button>
     </form>
   )
 }
