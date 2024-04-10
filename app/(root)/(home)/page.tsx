@@ -13,7 +13,7 @@ const Home = () => {
         <section className="flex h-4/5 w-full">
           <ChatRoom />
         </section>
-        <div className="absolute right-3 top-4 z-50">
+        <div className="absolute right-3 top-4 z-50 max-sm:top-16">
           <ActionMenu />
         </div>
       </section>

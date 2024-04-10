@@ -48,8 +48,8 @@ const ChatRoom = () => {
   }, [response, setReaction])
 
   return (
-    <section className="flex size-full flex-col gap-y-4 px-4 pb-4">
-      <div className="grow overflow-y-auto">
+    <section className="flex size-full flex-col px-4 md:gap-y-4 md:pb-4">
+      <div className="no-scrollbar flex grow flex-col overflow-y-auto overscroll-contain">
         <ChatHistory chatHistory={chatHistory} />
       </div>
       <InputControl

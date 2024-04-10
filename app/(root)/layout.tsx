@@ -6,7 +6,7 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <main className="relative h-screen">
+    <main className="relative h-full">
       <MeimeiProvider>{children}</MeimeiProvider>
     </main>
   );
