@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import InputControl from "./InputControl";
 import ChatHistory from "./ChatHistory";
 import { ChatResponse } from "@/constants";
@@ -14,15 +14,20 @@ const systemPrompt = {
 
 const ChatRoom = () => {
   const [chatHistory, setChatHistory] = useState<ChatResponse[]>([systemPrompt])
-  const [response, setResponse] = useState<ChatResponse | null>(null)
+  const [response, setResponse] = useState<ChatResponse | null>(null)// a response from AI
   const [loadingResponse, setLoadingResponse] = useState(false)
   const [prompt, setPrompt] = useState("");
   const { reaction, setReaction } = useMeimei()
 
   // once user click the send btn, add user input to chat history
-  const handleUserInput = useCallback(async (prompt: string) => {
-    // update UI with user's input immediately
+  const handleUserInput = (prompt: string) => {
+    // update chat history immediately once user press enter key
     setChatHistory((prev) => [...prev, { role: "user", content: prompt }])
+    askAI()
+    setPrompt("")
+  }
+
+  const askAI = async () => {
     try {
       setLoadingResponse(true)
       const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/chatgpt`, {
@@ -34,18 +39,18 @@ const ChatRoom = () => {
     } catch (error) {
       setResponse({ role: "system", content: "Meimei really don't know what to say to you:(" })
     }
-    setPrompt("")
-  }, [chatHistory])
+  }
 
-  // handle response from server
+  // update meimei reaction and chat history when AI response is received
   useEffect(() => {
-    if (response) {
-      setChatHistory((prev) => [...prev, response])
-      setLoadingResponse(false)
-      setReaction(`${reaction === "peaceful" ? 'dancing' : 'peaceful'}`)
-    }
+    if (!response) return
+    setChatHistory((prev) => [...prev, response])
+    setLoadingResponse(false)
+    setReaction(`${reaction === "peaceful" ? 'dancing' : 'peaceful'}`)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [response, setReaction])
+  }, [response])
+
+
 
   return (
     <section className="flex size-full flex-col px-4 md:gap-y-4 md:pb-4">
