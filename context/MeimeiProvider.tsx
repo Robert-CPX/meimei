@@ -3,8 +3,8 @@
 import React, { useState, createContext, useContext } from "react"
 
 type MeimeiContextType = {
-  mood: string
-  setMood: (newMood: string) => void
+  reaction: string
+  setReaction: (newReaction: string) => void
 }
 
 const MeimeiContext = createContext<MeimeiContextType | undefined>(undefined)
@@ -14,10 +14,10 @@ export const MeimeiProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  const [mood, setMood] = useState('peaceful')
+  const [reaction, setReaction] = useState('peaceful')
 
   return (
-    <MeimeiContext.Provider value={{ mood, setMood }}>
+    <MeimeiContext.Provider value={{ reaction, setReaction }}>
       {children}
     </MeimeiContext.Provider>
   )
