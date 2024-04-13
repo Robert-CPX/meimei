@@ -25,8 +25,8 @@ const config = {
         },
       },
       fontFamily: {
-        inter: ["var(--font-inter)"],
-        spaceGrotesk: ["var(--font-spaceGrotesk)"],
+        lexendDeca: ["var(--font-lexend_deca)"],
+        lemon: ["var(--font-lemon)"],
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
