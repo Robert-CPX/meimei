@@ -1,11 +1,11 @@
 import Link from "next/link"
 import Image from "next/image"
-import { SignedIn, UserButton } from "@clerk/nextjs"
+// import { SignedIn, UserButton } from "@clerk/nextjs"
 
 const ActionMenu = () => {
   return (
     <div className="flex flex-col gap-4">
-      <SignedIn>
+      {/* <SignedIn>
         <UserButton
           afterSignOutUrl="/sign-in"
           appearance={{
@@ -14,7 +14,7 @@ const ActionMenu = () => {
             }
           }}
         />
-      </SignedIn>
+      </SignedIn> */}
       <Link href="/setting" className="flex-center bg-transparent">
         <Image src="/assets/icons/setting.svg" alt="settings" width={48} height={48} />
       </Link>

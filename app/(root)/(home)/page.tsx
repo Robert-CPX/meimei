@@ -14,8 +14,11 @@ const Home = () => {
         <div className="max-md:hidden">
           <BrandMenu />
         </div>
-        <div className="md:hidden">
+        <div className="flex flex-col gap-4 md:hidden">
           <ModeMenu />
+          <div className="self-end">
+            <ActionMenu />
+          </div>
         </div>
         <div className="flex max-md:mb-4 max-md:max-h-[35%] md:basis-2/5 lg:basis-[30%]">
           <ChatRoom />
