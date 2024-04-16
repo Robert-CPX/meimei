@@ -1,8 +1,8 @@
 import Meimei from "@/components/shared/Meimei"
 import ModeMenu from "@/components/shared/ModeMenu"
-import BrandMenu from "@/components/shared/brand-menu/BrandMenu"
-import ChatRoom from "@/components/shared/chat/ChatRoom"
-import ChatMobileBackground from "@/components/shared/chat/ChatMobileBackground"
+import BrandMenu from "@/components/shared/brand-menu"
+import { ChatRoom, ChatMobileBackground } from "@/components/shared/chat"
+import ActionMenu from "@/components/shared/ActionMenu"
 
 const Home = () => {
   return (
