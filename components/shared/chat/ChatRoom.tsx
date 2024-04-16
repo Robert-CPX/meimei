@@ -9,7 +9,7 @@ import { useMeimei } from "@/context/MeimeiProvider";
 const systemPrompt = {
   role: "system",
   content:
-    "Hi! I'm Meimei, your learning buddy. Ready to explore and learn together? Let's get started!",
+    "Hi! I'm Meimei!",
 };
 
 const ChatRoom = () => {
@@ -51,7 +51,7 @@ const ChatRoom = () => {
   }, [response])
 
   return (
-    <section className="flex grow flex-col">
+    <section className="chat-container">
       <div className="no-scrollbar flex grow flex-col overflow-y-auto overscroll-contain">
         <ChatHistory chatHistory={chatHistory} />
       </div>

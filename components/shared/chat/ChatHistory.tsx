@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ChatResponse } from "../../../constants";
 import CursorSVG from "../../icons/CursorSVG";
+import React from "react";
 
 type ChatHistoryProps = {
   chatHistory: ChatResponse[];
@@ -37,22 +38,22 @@ const ChatHistory = ({ chatHistory }: ChatHistoryProps) => {
   }
 
   return (
-    <div className="max-h-0">
+    <div className="flex flex-col">
       {chatHistory.map((message, index) => (
-        <div key={index}>
+        <React.Fragment key={index}>
           {(index === chatHistory.length - 1 && message.role !== "user") ? (
-            <div className="chat chat-start">
-              <span className="chat-bubble whitespace-pre-line break-words bg-[#333333] text-white opacity-50 before:!content-none">
+            <div className="chat-ai chat-bubble">
+              <span className="chat-text">
                 {displayResponse}
                 {!completedTyping && <CursorSVG />}
               </span>
             </div>
           ) : (
-            <div className={`chat ${message.role === "user" ? "chat-end" : "chat-start"}`}>
-              <span className="chat-bubble whitespace-pre-line break-words bg-[#333333] text-white opacity-50 before:!content-none">{message.content}</span>
+            <div className={`chat-bubble ${message.role === "user" ? "chat-user" : "chat-ai"}`}>
+              <span className="chat-text">{message.content}</span>
             </div>
           )}
-        </div>
+        </React.Fragment>
       ))}
       {/* An invisible div to mark the end of messages*/}
       <div ref={endOfMessagesRef} />

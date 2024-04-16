@@ -11,6 +11,10 @@
     @apply font-normal text-[0.875rem] leading-[17.5px];
   }
 
+  .text-400-14-20 {
+    @apply font-normal text-[0.875rem] leading-[20px];
+  }
+
   .text-400-16-20 {
     @apply font-normal text-[1rem] leading-[20px];
   }
@@ -18,8 +22,7 @@
   .text-500-18-22 {
     @apply font-[500px] text-[1.125rem] leading-[22.5px];
   }
-
-  .text-dark_black_light_white {
-    @apply text-dark dark:text-light;
+  .text-500-10-12 {
+    @apply font-[500px] text-[0.625rem] leading-[12.5px];
   }
 }

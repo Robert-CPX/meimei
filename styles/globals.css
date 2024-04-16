@@ -123,17 +123,6 @@ h6 {
   text-decoration: initial;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
 @layer base {
   body {
     @apply text-light dark:text-dark;
@@ -141,19 +130,50 @@ h6 {
 }
 
 @layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
   .text-balance {
     text-wrap: balance;
   }
-
   .flex-center {
     @apply flex items-center justify-center;
+  }
+
+  .text-dark_light {
+    @apply text-dark dark:text-light;
   }
 
   .meimei-main {
     @apply fixed left-0 top-0 -z-50 size-full overflow-hidden;
   }
 
-  .chat-room {
-    @apply flex flex-col;
+  .chat-container {
+    @apply flex grow flex-col backdrop-blur bg-dark bg-opacity-50 rounded-[20px] p-2 gap-2;
+  }
+
+  .chat-bubble {
+    @apply bg-dark bg-opacity-50 rounded-[20px] px-5 py-3 max-w-[95%] shadow-md whitespace-pre-line break-words flex my-2;
+  }
+
+  .chat-user {
+    @apply ml-auto text-right justify-end text-secondary;
+  }
+
+  .chat-ai {
+    @apply mr-auto text-left justify-start text-light;
+  }
+
+  .chat-text {
+    @apply font-normal text-[0.875rem] leading-[20px];
+  }
+
+  .chat-textarea {
+    @apply font-light text-[0.875rem] leading-[17.5px] no-scrollbar min-h-12 resize-none rounded-[1.25rem] border-white bg-transparent pr-12 pt-3 placeholder:text-opacity-40 focus-visible:ring-0 text-light;
   }
 }

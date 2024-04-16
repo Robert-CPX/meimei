@@ -7,14 +7,14 @@ const Home = () => {
   return (
     <>
       <div className="meimei-main">
-        {/* <Meimei /> */}
+        <Meimei />
       </div>
       <div className="flex h-full justify-between max-md:flex-col">
         <div className="max-md:hidden">
           <BrandMenu />
         </div>
         <ModeMenu />
-        <section className="mr-8 flex max-w-[1/5] border">
+        <section className="mx-8 my-4 flex basis-[30%] rounded-[20px]">
           <ChatRoom />
         </section>
       </div>

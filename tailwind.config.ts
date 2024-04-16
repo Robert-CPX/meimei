@@ -18,16 +18,19 @@ const config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#FFD28E",
+          DEFAULT: "hsl(36, 100%, 78%)",
         },
         secondary: {
-          DEFAULT: "#FFFABC",
-        },
-        dark: {
-          DEFAULT: "#FFFFFF",
+          DEFAULT: "hsl(56, 100%, 87%)",
         },
         light: {
-          DEFAULT: "#333333",
+          DEFAULT: "hsl(0, 0%, 100%)",
+        },
+        dark: {
+          DEFAULT: "hsl(0, 0%, 20%)",
+        },
+        error: {
+          DEFAULT: "hsl(357, 100%, 74%)",
         },
       },
       fontFamily: {
@@ -40,7 +43,7 @@ const config = {
       },
     },
   },
-  plugins: [require("daisyui"), require("tailwindcss-animate"), require('@tailwindcss/typography')],
+  plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
 } satisfies Config
 
 export default config
