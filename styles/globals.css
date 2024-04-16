@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("./theme.css");
+
+/*reset.css*/
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -57,6 +60,7 @@ button,
 textarea,
 select {
   font: inherit;
+  font-size: 1rem;
 }
 
 /*
@@ -91,20 +95,6 @@ h6 {
   --str-chat__primary-surface-color: #e0f2f1;
   --str-chat__primary-surface-color-low-emphasis: #edf7f7;
   --str-chat__border-radius-circle: 6px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 /* Define the keyframes for the cursor animation */
@@ -144,6 +134,12 @@ h6 {
   scrollbar-width: none; /* Firefox */
 }
 
+@layer base {
+  body {
+    @apply text-light dark:text-dark;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -151,5 +147,13 @@ h6 {
 
   .flex-center {
     @apply flex items-center justify-center;
+  }
+
+  .meimei-main {
+    @apply fixed left-0 top-0 -z-50 size-full overflow-hidden;
+  }
+
+  .chat-room {
+    @apply flex flex-col;
   }
 }
