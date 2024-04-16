@@ -14,7 +14,7 @@ const Home = () => {
           <BrandMenu />
         </div>
         {/* <ModeMenu /> */}
-        <section className="flex basis-[30%] rounded-[20px]">
+        <section className="flex rounded-[20px] md:basis-2/5 lg:basis-[30%]">
           <ChatRoom />
         </section>
       </div>
