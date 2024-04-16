@@ -23,6 +23,9 @@ const config = {
         secondary: {
           DEFAULT: "hsl(56, 100%, 87%)",
         },
+        background: {
+          DEFAULT: "hsl(50, 13%, 95%)",
+        },
         light: {
           DEFAULT: "hsl(0, 0%, 100%)",
         },

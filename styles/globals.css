@@ -125,7 +125,7 @@ h6 {
 
 @layer base {
   body {
-    @apply text-light dark:text-dark;
+    @apply text-light dark:text-dark bg-background;
   }
 }
 
