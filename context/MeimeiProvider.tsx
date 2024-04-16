@@ -2,7 +2,11 @@
 
 import React, { useState, createContext, useContext } from "react"
 
+type ModeType = "companion" | "focus"
+
 type MeimeiContextType = {
+  mode: ModeType
+  setMode: (newMode: "focus" | "companion") => void
   reaction: string
   setReaction: (newReaction: string) => void
 }
@@ -14,10 +18,11 @@ export const MeimeiProvider = ({
 }: {
   children: React.ReactNode
 }) => {
+  const [mode, setMode] = useState<ModeType>("companion")
   const [reaction, setReaction] = useState('peaceful')
 
   return (
-    <MeimeiContext.Provider value={{ reaction, setReaction }}>
+    <MeimeiContext.Provider value={{ mode, setMode, reaction, setReaction }}>
       {children}
     </MeimeiContext.Provider>
   )

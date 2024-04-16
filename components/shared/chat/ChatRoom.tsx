@@ -51,7 +51,7 @@ const ChatRoom = () => {
   }, [response])
 
   return (
-    <section className="flex size-full flex-col px-4 md:gap-y-4 md:pb-4">
+    <section className="flex grow flex-col">
       <div className="no-scrollbar flex grow flex-col overflow-y-auto overscroll-contain">
         <ChatHistory chatHistory={chatHistory} />
       </div>

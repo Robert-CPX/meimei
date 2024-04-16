@@ -9,6 +9,5 @@ export const meimei_1 = {
 
 export const Modes = [
   { name: "FOCUS", route: "/" },
-  { name: "COMPANION", route: "/" },
-  { name: "HISTORY", route: "/" },
+  { name: "COMPANION", route: "/" }
 ]

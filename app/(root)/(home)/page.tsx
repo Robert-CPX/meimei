@@ -1,22 +1,23 @@
-import ModeMenu from "@/components/shared/ModeMenu"
-import ChatRoom from "@/components/shared/chat/ChatRoom"
 import Meimei from "@/components/shared/Meimei"
-import ActionMenu from "@/components/shared/ActionMenu"
+import ModeMenu from "@/components/shared/ModeMenu"
+import BrandMenu from "@/components/shared/brand-menu/BrandMenu"
+import ChatRoom from "@/components/shared/chat/ChatRoom"
+
 const Home = () => {
   return (
     <>
-      <Meimei />
-      <section className="flex size-full flex-col justify-between gap-4 py-4">
-        <nav className="flex-center">
-          <ModeMenu />
-        </nav>
-        <section className="flex h-4/5 w-full">
+      <div className="meimei-main">
+        {/* <Meimei /> */}
+      </div>
+      <div className="flex h-full justify-between max-md:flex-col">
+        <div className="max-md:hidden">
+          <BrandMenu />
+        </div>
+        <ModeMenu />
+        <section className="mr-8 flex max-w-[1/5] border">
           <ChatRoom />
         </section>
-        <div className="absolute right-3 top-4 z-50 max-sm:top-16">
-          <ActionMenu />
-        </div>
-      </section>
+      </div>
     </>
   )
 }

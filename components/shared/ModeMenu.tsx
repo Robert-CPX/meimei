@@ -5,7 +5,7 @@ const ModeMenu = () => {
     <ul className="flex-center menu menu-horizontal h-[44px] rounded-[22px] bg-[#333333] px-4 py-0 text-white opacity-50">
       {Modes.map((mode) => (
         <li key={mode.name}>
-          <a className="text-white active:bg-primary-orange active:text-white">{mode.name}</a>
+          <a className="text-white active:bg-primary active:text-white">{mode.name}</a>
         </li>
       ))}
     </ul>
