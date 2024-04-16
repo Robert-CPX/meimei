@@ -3,6 +3,7 @@
 import { DropdownMenuContent, DropdownMenuSeparator, DropdownMenuGroup, DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { SignOutButton, SignedIn, UserButton, useClerk } from "@clerk/nextjs"
 import Image from "next/image"
+import Link from "next/link"
 
 const SignedInBit = () => {
   const { session, openUserProfile } = useClerk()
@@ -12,7 +13,7 @@ const SignedInBit = () => {
         <DropdownMenuGroup>
           <DropdownMenuItem
             onClick={() => openUserProfile()}
-            className="flex items-center gap-4"
+            className="flex cursor-pointer items-center gap-4"
           >
             <UserButton
               afterSignOutUrl="/sign-in"
@@ -28,10 +29,12 @@ const SignedInBit = () => {
             </div>
           </DropdownMenuItem>
           <DropdownMenuSeparator className="separator" />
-          <DropdownMenuItem className="h-[52px] text-[1rem] font-normal leading-[20px]">Send us feedback!</DropdownMenuItem>
+          <DropdownMenuItem className="h-[52px] cursor-pointer text-[1rem] font-normal leading-[20px]">
+            <Link href="/feedback">Send us feedback!</Link>
+          </DropdownMenuItem>
           <DropdownMenuSeparator className="separator" />
           <SignOutButton signOutOptions={{ sessionId: session?.id }}>
-            <DropdownMenuItem className="h-[52px] text-[1rem] font-normal leading-[20px] text-[#EB3A3A]">Log out</DropdownMenuItem>
+            <DropdownMenuItem className="h-[52px] cursor-pointer text-[1rem] font-normal leading-[20px] text-[#EB3A3A]">Log out</DropdownMenuItem>
           </SignOutButton>
         </DropdownMenuGroup>
       </DropdownMenuContent>
