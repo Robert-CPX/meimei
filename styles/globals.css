@@ -138,6 +138,7 @@ h6 {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+
   .text-balance {
     text-wrap: balance;
   }
@@ -154,7 +155,15 @@ h6 {
   }
 
   .chat-container {
-    @apply flex grow flex-col backdrop-blur bg-dark bg-opacity-50 rounded-[20px] p-2 gap-2;
+    @apply flex grow flex-col p-2 gap-2 md:chat-container-desktop max-md:chat-container-mobile;
+  }
+
+  .chat-container-mobile {
+    @apply bg-transparent;
+  }
+
+  .chat-container-desktop {
+    @apply backdrop-blur bg-dark bg-opacity-50 rounded-[20px];
   }
 
   .chat-bubble {
