@@ -1,33 +1,37 @@
 'use client'
 
-import { DropdownMenuContent, DropdownMenuSeparator, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuItem } from "@/components/ui/dropdown-menu"
-import { SignOutButton, SignedIn, UserButton, useClerk, useUser } from "@clerk/nextjs"
+import { DropdownMenuContent, DropdownMenuSeparator, DropdownMenuGroup, DropdownMenuItem } from "@/components/ui/dropdown-menu"
+import { SignOutButton, SignedIn, UserButton, useClerk } from "@clerk/nextjs"
+import Image from "next/image"
 
 const SignedInBit = () => {
   const { session, openUserProfile } = useClerk()
   return (
     <SignedIn>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="ml-8 mt-3 w-[288px] rounded-[20px] border border-dark bg-light">
         <DropdownMenuGroup>
           <DropdownMenuItem
             onClick={() => openUserProfile()}
             className="flex items-center gap-4"
           >
-            <UserButton appearance={{
-              elements: {
-                avatarBox: 'h-[48px] w-[48px] rounded-full bg-primary-orange flex-center',
-              }
-            }} />
+            <UserButton
+              afterSignOutUrl="/sign-in"
+              appearance={{
+                elements: {
+                  avatarBox: 'h-[48px] w-[48px] rounded-full bg-primary-orange flex-center',
+                }
+              }} />
+            <Image src="/assets/icons/edit.svg" alt="Edit user profile" width={20} height={20} className="absolute bottom-[6px] left-[38px]" />
             <div className="flex flex-col justify-start gap-2">
               <span className="text-500-18-22">{session?.user.username}</span>
               <span className="text-400-14-17">{session?.user.emailAddresses[0].emailAddress}</span>
             </div>
           </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem className="text-400-16-20">Send us feedback!</DropdownMenuItem>
-          <DropdownMenuSeparator />
+          <DropdownMenuSeparator className="separator" />
+          <DropdownMenuItem className="h-[52px] text-[1rem] font-normal leading-[20px]">Send us feedback!</DropdownMenuItem>
+          <DropdownMenuSeparator className="separator" />
           <SignOutButton signOutOptions={{ sessionId: session?.id }}>
-            <DropdownMenuItem>Log out</DropdownMenuItem>
+            <DropdownMenuItem className="h-[52px] text-[1rem] font-normal leading-[20px] text-[#EB3A3A]">Log out</DropdownMenuItem>
           </SignOutButton>
         </DropdownMenuGroup>
       </DropdownMenuContent>

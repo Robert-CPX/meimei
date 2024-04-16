@@ -7,15 +7,15 @@ import SignedInBit from "./SignedInBit"
 
 const BrandMenu = () => {
   return (
-    <div className="container shadow-md">
+    <div className="rounded-[20px] border border-dark bg-light px-2 shadow-md">
       <ClerkLoading>
-        <Loader2 size={48} className="dark: size-12 animate-spin text-slate-200" />
+        <Loader2 size={48} className="size-12 animate-spin text-dark" />
       </ClerkLoading>
       <ClerkLoaded>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button className="gap-2">
-              Study Cafe
+            <Button className="h-[48px] w-[198px] gap-2 font-lemon text-[1.25rem] font-normal leading-[26px] focus-visible:ring-0 focus-visible:ring-offset-0">
+              StudyCafe
               <ChevronUp />
             </Button>
           </DropdownMenuTrigger>

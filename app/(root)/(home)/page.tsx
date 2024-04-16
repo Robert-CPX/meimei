@@ -9,12 +9,12 @@ const Home = () => {
       <div className="meimei-main">
         <Meimei />
       </div>
-      <div className="flex h-full justify-between max-md:flex-col">
+      <div className="flex h-full justify-between px-8 py-4 max-md:flex-col">
         <div className="max-md:hidden">
           <BrandMenu />
         </div>
-        <ModeMenu />
-        <section className="mx-8 my-4 flex basis-[30%] rounded-[20px]">
+        {/* <ModeMenu /> */}
+        <section className="flex basis-[30%] rounded-[20px]">
           <ChatRoom />
         </section>
       </div>
