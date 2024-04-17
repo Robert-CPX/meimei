@@ -1,15 +1,17 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import { SignOutButton, SignedIn, UserButton, useClerk } from "@clerk/nextjs"
+import { SignOutButton, UserButton, useClerk } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronRight } from "lucide-react"
+import MobileNavigationBar from "@/components/shared/MobileNavigationBar"
 
 const Page = () => {
   const { session, openUserProfile } = useClerk()
   return (
     <div className='mx-6 mt-4 flex flex-col gap-4'>
+      <MobileNavigationBar title="Settings" rootPath="/" />
       <section
         className="relative flex h-[96px] cursor-pointer items-center gap-4 rounded-[20px] bg-light px-3"
         onClick={() => openUserProfile()}

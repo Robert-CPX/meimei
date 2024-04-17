@@ -146,10 +146,6 @@ h6 {
     @apply flex items-center justify-center;
   }
 
-  .text-dark_light {
-    @apply text-dark dark:text-light;
-  }
-
   .meimei-main {
     @apply fixed left-0 top-0 -z-50 size-full overflow-hidden;
   }
@@ -184,5 +180,9 @@ h6 {
 
   .chat-textarea {
     @apply font-light text-[0.875rem] leading-[17.5px] no-scrollbar min-h-12 resize-none rounded-[1.25rem] border-white bg-transparent pr-12 pt-3 placeholder:text-opacity-40 focus-visible:ring-0 text-light;
+  }
+
+  .mobile-nav-title {
+    @apply font-[700px] text-[1rem] leading-[20px] uppercase;
   }
 }

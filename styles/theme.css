@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @layer utilities {
+  .text-dark_light {
+    @apply text-dark dark:text-light;
+  }
+
+  .background-dark_light {
+    @apply bg-background dark:bg-dark;
+  }
+
   .text-800-48-28 {
     @apply font-extrabold text-[3rem] leading-[28px];
   }
