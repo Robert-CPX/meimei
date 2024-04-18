@@ -4,11 +4,11 @@
 
 @layer utilities {
   .text-dark_light {
-    @apply text-dark dark:text-light;
+    @apply text-dark; /* disable dark mode at this moment*/
   }
 
   .background-dark_light {
-    @apply bg-background dark:bg-dark;
+    @apply bg-background; /* disable dark mode at this moment*/
   }
 
   .text-800-48-28 {
