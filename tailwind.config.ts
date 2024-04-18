@@ -20,9 +20,7 @@ const config = {
       colors: {
         primary: {
           DEFAULT: "hsl(36, 100%, 78%)",
-        },
-        secondary: {
-          DEFAULT: "hsl(56, 100%, 87%)",
+          light: "hsl(56, 100%, 87%)",
         },
         background: {
           DEFAULT: "hsl(50, 13%, 95%)",

@@ -167,7 +167,7 @@ h6 {
   }
 
   .chat-user {
-    @apply ml-auto text-right justify-end text-secondary;
+    @apply ml-auto text-right justify-end text-primary-light;
   }
 
   .chat-ai {
@@ -188,5 +188,8 @@ h6 {
 
   .mode-tabs-trigger {
     @apply rounded-[20px] data-[state=active]:border data-[state=active]:border-dark data-[state=active]:bg-primary data-[state=active]:outline data-[state=active]:outline-offset-[-2] data-[state=active]:outline-primary data-[state=active]:text-dark px-4 font-[700px] text-[0.75rem] leading-[15px] uppercase min-w-[80px];
+  }
+  .input-time-editor {
+    @apply size-[30px] border-none bg-transparent p-1 text-[1.25rem] font-[500px] leading-[25px] focus:bg-dark focus-visible:ring-0 focus-visible:ring-offset-0;
   }
 }

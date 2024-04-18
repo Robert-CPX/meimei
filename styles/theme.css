@@ -41,6 +41,11 @@
   .text-500-10-12 {
     @apply font-[500px] text-[0.625rem] leading-[12.5px];
   }
+
+  .text-500-20-25 {
+    @apply font-[500px] text-[1.25rem] leading-[25px];
+  }
+
   .separator {
     @apply bg-[#E4E3E3] border-[0.5px];
   }
