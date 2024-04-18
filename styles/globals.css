@@ -185,4 +185,8 @@ h6 {
   .mobile-nav-title {
     @apply font-[700px] text-[1rem] leading-[20px] uppercase;
   }
+
+  .mode-tabs-trigger {
+    @apply rounded-[20px] data-[state=active]:border data-[state=active]:border-dark data-[state=active]:bg-primary data-[state=active]:outline data-[state=active]:outline-offset-[-2] data-[state=active]:outline-primary data-[state=active]:text-dark px-4 font-[700px] text-[0.75rem] leading-[15px] uppercase min-w-[80px];
+  }
 }

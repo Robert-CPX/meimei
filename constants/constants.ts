@@ -7,7 +7,13 @@ export const meimei_1 = {
   src: "/assets/videos/meimei_1.mp4"
 }
 
+export const ModesMobile = [
+  { value: "focus", route: "/" },
+  { value: "companion", route: "/" },
+  { value: "history", route: "/" }
+]
+
 export const Modes = [
-  { name: "FOCUS", route: "/" },
-  { name: "COMPANION", route: "/" }
+  { value: "focus", route: "/" },
+  { value: "companion", route: "/" }
 ]
