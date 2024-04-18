@@ -20,7 +20,7 @@ const Home = () => {
             <ActionMenu />
           </div>
         </div>
-        <div className="flex max-md:mb-4 max-md:max-h-[35%] md:basis-2/5 lg:basis-[30%]">
+        <div className="flex max-md:mb-4 max-md:max-h-[35%] md:basis-[26%] lg:basis-[22%]">
           <ChatRoom />
         </div>
         <ChatMobileBackground />
