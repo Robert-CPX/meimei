@@ -7,7 +7,7 @@ import SignedInBit from "./SignedInBit"
 
 const BrandMenu = () => {
   return (
-    <div className="rounded-[20px] border border-dark bg-light px-2 shadow-md">
+    <div className="self-start rounded-[20px] border border-dark bg-light px-2 shadow-md max-md:hidden">
       <ClerkLoading>
         <Loader2 size={48} className="size-12 animate-spin text-dark" />
       </ClerkLoading>

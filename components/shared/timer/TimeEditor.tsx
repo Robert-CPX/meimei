@@ -4,9 +4,9 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { isNumberInRange, formatMinutesAndSeconds } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
+import { COUNTDOWN_ID } from "@/constants/constants"
 
-const COUNTDOWN_ID = 'time_editor_countdown_id';
-
+// TimeEditor component only show on desktop
 const TimeEditor = () => {
   const [minutes, setMinutes] = useState("25")
   const [seconds, setSeconds] = useState("00")
@@ -46,8 +46,8 @@ const TimeEditor = () => {
 
       const countdownInterval = setInterval(() => {
         if (remainingSeconds <= 0) {
-          clearInterval(countdownInterval);
           // Countdown finished, handle completion logic here
+          clearInterval(countdownInterval);
           setCountdown(false);
           return;
         }
@@ -72,7 +72,7 @@ const TimeEditor = () => {
 
   return (
     <div className="flex-center relative isolate h-[54px] max-md:hidden md:w-[248px]">
-      <div className="absolute inset-0 -z-10 rounded-[22px] bg-dark opacity-50"></div>
+      <div className="background-opacity absolute inset-0 -z-10 rounded-[22px]"></div>
       <div className="flex w-full items-center justify-between px-3 text-primary-light">
         <div className="flex-center ml-10 gap-1">
           <Input
