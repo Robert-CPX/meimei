@@ -13,6 +13,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import MobileNavigationBar from "@/components/shared/MobileNavigationBar"
 
 const FeedbackSchema = z.object({
   feedback: z.string().min(20, { message: "feedback must be at least 20 characters" }).max(2000),
@@ -31,24 +32,27 @@ const Page = () => {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4 p-4">
-        <FormField
-          control={form.control}
-          name="feedback"
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-4">
-              <FormLabel>Things you want to share with me!</FormLabel>
-              <FormControl>
-                <Textarea placeholder="Add your comment..." {...field} className="grow basis-[360px]" />
-              </FormControl>
-              <FormMessage className="text-error" />
-            </FormItem>
-          )}
-        />
-        <Button type="submit" className="mx-6 mb-8 rounded-[20px] bg-primary">Submit</Button>
-      </form>
-    </Form>
+    <main className="mx-4 mt-4 flex flex-col gap-4">
+      <MobileNavigationBar title="feedback" allowBack />
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
+          <FormField
+            control={form.control}
+            name="feedback"
+            render={({ field }) => (
+              <FormItem className="flex flex-col gap-4">
+                <FormLabel>Things you want to share with me!</FormLabel>
+                <FormControl>
+                  <Textarea placeholder="Add your comment..." {...field} className="grow basis-[360px] resize-none rounded-[28px]" />
+                </FormControl>
+                <FormMessage className="text-error" />
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="mb-8 rounded-[20px] bg-primary">Submit</Button>
+        </form>
+      </Form>
+    </main>
   )
 }
 
