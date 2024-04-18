@@ -1,6 +1,6 @@
 "use client"
 
-import { FormEvent, useEffect, useRef } from "react";
+import { FormEvent, useEffect, useRef, useCallback } from "react";
 import { Textarea } from "@/components/ui/textarea"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -25,11 +25,26 @@ const InputControl = ({
     setPrompt("")
   }
 
+  const onEnter = useCallback((event: KeyboardEvent) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault()
+      handleInput(prompt)
+      setPrompt("")
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [prompt])
+
   useEffect(() => {
     const textarea = textareaRef.current
     if (!textarea) return
     textarea.style.height = "48px"
     textarea.style.height = `${textarea.scrollHeight}px`
+
+    textarea.addEventListener("keydown", onEnter)
+    return () => {
+      textarea.removeEventListener("keydown", onEnter)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prompt])
 
   return (
