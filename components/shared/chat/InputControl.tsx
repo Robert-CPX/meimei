@@ -9,16 +9,16 @@ type InputControlProps = {
   prompt: string;
   setPrompt: (prompt: string) => void;
   handleInput: (input: string) => void;
-  loading: boolean;
 }
 
 const InputControl = ({
   prompt,
   setPrompt,
-  handleInput,
-  loading
+  handleInput
 }: InputControlProps) => {
+
   const textareaRef = useRef<HTMLTextAreaElement>(null)
+
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     handleInput(prompt)

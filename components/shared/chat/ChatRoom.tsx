@@ -15,7 +15,6 @@ const systemPrompt = {
 const ChatRoom = () => {
   const [chatHistory, setChatHistory] = useState<ChatResponse[]>([systemPrompt])
   const [response, setResponse] = useState<ChatResponse | null>(null)// a response from AI
-  const [loadingResponse, setLoadingResponse] = useState(false)
   const [prompt, setPrompt] = useState("");
   const { reaction, setReaction } = useMeimei()
 
@@ -29,7 +28,6 @@ const ChatRoom = () => {
 
   const askAI = async () => {
     try {
-      setLoadingResponse(true)
       const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/chatgpt`, {
         method: 'POST',
         body: JSON.stringify(chatHistory),
@@ -45,7 +43,6 @@ const ChatRoom = () => {
   useEffect(() => {
     if (!response) return
     setChatHistory((prev) => [...prev, response])
-    setLoadingResponse(false)
     setReaction(`${reaction === "peaceful" ? 'dancing' : 'peaceful'}`)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [response])
@@ -59,7 +56,6 @@ const ChatRoom = () => {
         prompt={prompt}
         setPrompt={setPrompt}
         handleInput={handleUserInput}
-        loading={loadingResponse}
       />
     </section>
   )
