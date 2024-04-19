@@ -3,7 +3,7 @@
 import UserDocument from '@/database/models/user.model';
 import { connectToDatabase } from '@/database/mongoose';
 import { handleError } from '../utils';
-import { CreateUserParams, DeleteUserParams, UpdateUserParams } from './shared';
+import { CreateUserParams, DeleteUserParams, GetUserByIdParams, UpdateUserParams } from './shared';
 import { revalidatePath } from 'next/cache';
 
 // CREATE
@@ -48,3 +48,14 @@ export const deleteUser = async (params: DeleteUserParams) => {
     handleError(error);
   }
 };
+
+// Get user mongo Id by clerk Id
+export const getMongoIdByClerkId = async (params: GetUserByIdParams) => {
+  try {
+    await connectToDatabase()
+    const user = await UserDocument.findOne({ clerkId: params.userId })
+    return user.id
+  } catch (error) {
+    handleError(error);
+  }
+}

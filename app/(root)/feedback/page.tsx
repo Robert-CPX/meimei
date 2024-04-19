@@ -14,12 +14,20 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import MobileNavigationBar from "@/components/shared/MobileNavigationBar"
+import { createFeedback } from "@/lib/actions/feedback.actions"
+import { getMongoIdByClerkId } from "@/lib/actions/user.actions"
+import { useAuth } from '@clerk/nextjs'
+import { redirect } from 'next/navigation'
+import { toast } from '@/components/ui/use-toast';
 
 const FeedbackSchema = z.object({
   feedback: z.string().min(20, { message: "feedback must be at least 20 characters" }).max(2000),
 })
 
 const Page = () => {
+  const { userId } = useAuth()
+  if (!userId) redirect('/sign-in')
+
   const form = useForm<z.infer<typeof FeedbackSchema>>({
     resolver: zodResolver(FeedbackSchema),
     defaultValues: {
@@ -27,8 +35,16 @@ const Page = () => {
     },
   })
 
-  function onSubmit(values: z.infer<typeof FeedbackSchema>) {
-    console.log(values)
+  const onSubmit = async (values: z.infer<typeof FeedbackSchema>) => {
+    try {
+      console.log(userId)
+      const mongoId = await getMongoIdByClerkId({ userId })
+      await createFeedback({ detail: values.feedback, author: mongoId })
+      form.reset()
+      toast({ description: 'Answer posted successfully' })
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (

@@ -16,3 +16,14 @@ export type UpdateUserParams = {
 export type DeleteUserParams = {
   clerkId: string;
 }
+
+export type CreateFeedbackParams = {
+  author: string;
+  detail: string;
+  rating?: number;
+  type?: string;
+}
+
+export type GetUserByIdParams = {
+  userId: string;
+}
