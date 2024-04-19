@@ -29,7 +29,7 @@ const TimeSelector = () => {
   }, [countdown])
 
   return (
-    <div className={`flex w-full flex-col items-center gap-3 text-primary-light md:hidden ${(mode === 'companion' || mode === 'dredge-up') && "hidden"}`}>
+    <div className={`flex w-full flex-col items-center gap-3 text-primary-light md:hidden ${mode === 'companion' && "hidden"} ${mode === 'dredge-up' && "hidden"}`}>
       {countdown ? (
         <div className='flex w-full items-center'>
           <div className='size-[40px]' />

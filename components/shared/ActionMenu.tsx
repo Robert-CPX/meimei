@@ -6,8 +6,9 @@ import Image from "next/image"
 
 const ActionMenu = () => {
   const { mode } = useMeimei()
+
   return (
-    <div className={`flex flex-col gap-4 ${mode === 'focus' && 'hidden'}`}>
+    <div className={`${(mode === 'focus' || mode === 'dredge-up') ? 'hidden' : 'flex'} flex-col gap-4`}>
       <Link href="/setting" className="flex items-center justify-center bg-transparent">
         <Image src="/assets/icons/setting.svg" alt="settings" width={48} height={48} />
       </Link>

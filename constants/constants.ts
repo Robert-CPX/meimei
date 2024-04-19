@@ -7,8 +7,15 @@ export const meimei_1 = {
   src: "/assets/videos/meimei_1.mp4"
 }
 
-export const TabMobileData = ["focus", "companion", "history"]
-export const TabData = ["focus", "companion"]
+export const TabMobileData = [
+  { name: "focus", value: "focus" },
+  { name: "companion", value: "companion" },
+  { name: "history", value: "dredge-up" }
+]
+export const TabData = [
+  { name: "focus", value: "focus" },
+  { name: "companion", value: "companion" }
+]
 
 export const TimeOptions = [
   { id: "a", value: "900", label: "15 min" },

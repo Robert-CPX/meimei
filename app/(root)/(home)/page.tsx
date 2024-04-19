@@ -4,6 +4,7 @@ import BrandMenu from "@/components/shared/brand-menu"
 import { ChatRoom, ChatMobileBackground } from "@/components/shared/chat"
 import ActionMenu from "@/components/shared/ActionMenu"
 import { TimeEditor, TimeSelector } from "@/components/shared/timer"
+import ChatHistoryMobile from "@/components/shared/chat/ChatHistoryMobile"
 
 const Home = () => {
   return (
@@ -28,6 +29,7 @@ const Home = () => {
           <ChatRoom />
         </section>
         <ChatMobileBackground />
+        <ChatHistoryMobile />
       </div>
     </>
   )

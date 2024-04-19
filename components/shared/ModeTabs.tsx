@@ -28,7 +28,7 @@ const ModeTabs = () => {
   }, []);
 
   return (
-    <div className={`relative isolate flex h-[44px] items-center justify-center md:w-[248px] ${isRunning && 'hidden'}`}>
+    <div className={`relative isolate z-10 flex h-[44px] items-center justify-center md:w-[248px] ${isRunning && 'hidden'}`}>
       <div className='absolute inset-0 -z-10 rounded-[22px] bg-dark opacity-50'></div>
       <Tabs defaultValue="companion" className='px-2 text-light'>
         <TabsList
@@ -36,12 +36,12 @@ const ModeTabs = () => {
           defaultValue={currentMode}>
           {modes.map((mode) => (
             <TabsTrigger
-              key={mode}
-              value={mode}
-              className={`min-w-[80px] rounded-[20px] px-4 text-[0.75rem] font-[700px] uppercase leading-[15px] ${currentMode === mode && 'border border-dark bg-primary text-dark outline outline-offset-[-2] outline-primary'}`}
-              onClick={() => setMode(mode as ModeType)}
+              key={mode.name}
+              value={mode.value}
+              className={`min-w-[80px] rounded-[20px] px-4 text-[0.75rem] font-[700px] uppercase leading-[15px] ${currentMode === mode.value && 'border border-dark bg-primary text-dark outline outline-offset-[-2] outline-primary'}`}
+              onClick={() => setMode(mode.value as ModeType)}
             >
-              {mode}
+              {mode.name}
             </TabsTrigger>
           ))}
         </TabsList>
