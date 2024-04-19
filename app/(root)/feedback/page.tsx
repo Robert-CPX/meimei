@@ -37,7 +37,6 @@ const Page = () => {
 
   const onSubmit = async (values: z.infer<typeof FeedbackSchema>) => {
     try {
-      console.log(userId)
       const mongoId = await getMongoIdByClerkId({ userId })
       await createFeedback({ detail: values.feedback, author: mongoId })
       form.reset()

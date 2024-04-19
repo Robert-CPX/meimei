@@ -1,12 +1,14 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react";
+import { use, useEffect, useState } from "react";
 import InputControl from "./InputControl";
 import ChatHistoryWidget from "./ChatHistoryWidget";
 import { ChatResponse } from "@/constants";
 import { useMeimei } from "@/context/MeimeiProvider";
 import SingleChatBox from "./SingleChatBox";
 import MiniChatBubble from "./MiniChatBubble";
+import { haveConversation } from "@/lib/actions/interaction.actions";
+import { useAuth } from "@clerk/nextjs";
 
 const systemPrompt = {
   role: "system",
@@ -20,11 +22,16 @@ const ChatRoom = () => {
   const [prompt, setPrompt] = useState("");
   const { mode, reaction, setReaction } = useMeimei()
   const [isSneaking, setIsSneaking] = useState(false)
+  const { userId } = useAuth()
 
   // once user click the send btn, add user input to chat history
-  const handleUserInput = (prompt: string) => {
+  const handleUserInput = async (prompt: string) => {
     // update chat history immediately once user press enter key
     setChatHistory((prev) => [...prev, { role: "user", content: prompt }])
+    // save user input to db
+    if (userId) {
+      await haveConversation({ content: prompt, userId: userId })
+    }
     askAI()
     setPrompt("")
   }

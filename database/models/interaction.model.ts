@@ -1,7 +1,7 @@
 import { Schema, model, models, Document } from 'mongoose'
 
 export type Interaction = {
-  user: Schema.Types.ObjectId;
+  clerkUserId: string;
   action: string;
   question: string;
   time: string;
@@ -10,7 +10,7 @@ export type Interaction = {
 } | Document
 
 const InteractionSchema = new Schema({
-  user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  clerkUserId: { type: String, required: true },
   action: { type: String, required: true },
   question: { type: String },
   time: { type: String },

@@ -8,11 +8,11 @@ import { HaveConversationParams, SetTimerParams, SetModeParams } from './shared'
 // User have a conversation with Meimei
 export const haveConversation = async (params: HaveConversationParams) => {
   try {
-    connectToDatabase()
+    await connectToDatabase();
     const { content, userId } = params
     if (userId) {
       await InteractionDocument.create({
-        user: userId,
+        clerkUserId: userId,
         question: content,
         action: 'conversation'
       })
@@ -23,13 +23,13 @@ export const haveConversation = async (params: HaveConversationParams) => {
 }
 
 // User set a timer once
-export const setTimer = async (params: SetTimerParams) => {
+export const setANewTimer = async (params: SetTimerParams) => {
   try {
-    connectToDatabase()
+    await connectToDatabase();
     const { time, userId } = params
     if (userId) {
       await InteractionDocument.create({
-        user: userId,
+        clerkUserId: userId,
         time: time,
         action: 'set_time'
       })
@@ -40,13 +40,13 @@ export const setTimer = async (params: SetTimerParams) => {
 }
 
 // User set a mode once
-export const setMode = async (params: SetModeParams) => {
+export const toggleMode = async (params: SetModeParams) => {
   try {
-    connectToDatabase()
+    await connectToDatabase();
     const { mode, userId } = params
     if (userId) {
       await InteractionDocument.create({
-        user: userId,
+        clerkUserId: userId,
         mode: mode,
         action: 'set_mode'
       })
