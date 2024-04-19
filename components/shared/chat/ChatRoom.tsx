@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import InputControl from "./InputControl";
-import ChatHistory from "./ChatHistory";
+import ChatHistoryWidget from "./ChatHistoryWidget";
 import { ChatResponse } from "@/constants";
 import { useMeimei } from "@/context/MeimeiProvider";
 import SingleChatBox from "./SingleChatBox";
@@ -63,7 +63,7 @@ const ChatRoom = () => {
       {mode === 'companion' || isSneaking ? (
         <section className="chat-container">
           <div className="no-scrollbar flex grow flex-col overflow-y-auto overscroll-contain">
-            <ChatHistory chatHistory={chatHistory} />
+            <ChatHistoryWidget chatHistory={chatHistory} />
           </div>
           <InputControl
             prompt={prompt}

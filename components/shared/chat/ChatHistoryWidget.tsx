@@ -5,11 +5,11 @@ import { ChatResponse } from "../../../constants";
 import CursorSVG from "../../icons/CursorSVG";
 import React from "react";
 
-type ChatHistoryProps = {
+type ChatHistoryWidgetProps = {
   chatHistory: ChatResponse[];
 }
 
-const ChatHistory = ({ chatHistory }: ChatHistoryProps) => {
+const ChatHistoryWidget = ({ chatHistory }: ChatHistoryWidgetProps) => {
   const [displayResponse, setDisplayResponse] = useState("")
   const [completedTyping, setCompletedTyping] = useState(false)
   const endOfMessagesRef = useRef<HTMLDivElement>(null)
@@ -61,4 +61,4 @@ const ChatHistory = ({ chatHistory }: ChatHistoryProps) => {
   )
 }
 
-export default ChatHistory
+export default ChatHistoryWidget
