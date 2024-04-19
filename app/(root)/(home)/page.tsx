@@ -9,6 +9,7 @@ import ChatHistoryMobile from "@/components/shared/chat/ChatHistoryMobile"
 const Home = () => {
   return (
     <>
+      {/* Meimei as background */}
       <div className="meimei-main">
         <Meimei />
       </div>
@@ -16,19 +17,24 @@ const Home = () => {
         {/* Brand menu only show on desktop */}
         <BrandMenu />
         <section className="flex flex-col items-center justify-start gap-4">
+          {/* Mode Tabs disappear only when timer is running */}
           <ModeTabs />
           {/* Time Editor only show on desktop */}
           <TimeEditor />
           {/* Time Selector only show on mobile */}
           <TimeSelector />
         </section>
+        {/* ActionMenu is for desktop only */}
         <section className="mb-auto mt-4 self-end md:hidden">
           <ActionMenu />
         </section>
+        {/* ChatRoom has threen variants, two for desktop and one for mobile */}
         <section className="flex max-md:mb-4 max-md:max-h-[35%] md:basis-[26%] lg:basis-[22%]">
           <ChatRoom />
         </section>
+        {/* ChatMobileBackground is absolute positioned background for mobile chat */}
         <ChatMobileBackground />
+        {/* when user set mode=dredge-up on mobile, ChatHistoryMobile take the whole screen under ModeTabs */}
         <ChatHistoryMobile />
       </div>
     </>
