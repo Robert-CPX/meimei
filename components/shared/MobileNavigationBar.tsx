@@ -21,7 +21,7 @@ const MobileNavigationBar = ({
         <Button
           size="icon"
           onClick={() => router.back()}
-          className="text-dark_light flex-center size-12"
+          className="text-dark_light flex size-12 items-center justify-center"
         >
           <ChevronLeft />
         </Button>
@@ -30,7 +30,7 @@ const MobileNavigationBar = ({
       )}
       <p className="mobile-nav-title text-dark_light mx-auto">{title}</p>
       {rootPath ? (
-        <Link href={rootPath} className="text-dark_light flex-center size-12">
+        <Link href={rootPath} className="text-dark_light flex size-12 items-center justify-center">
           <X />
         </Link>
       ) : (

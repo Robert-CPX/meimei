@@ -2,11 +2,11 @@
 
 import React, { useState, createContext, useContext } from "react"
 
-type ModeType = "companion" | "focus"
+export type ModeType = "companion" | "focus" | "dredge-up"
 
 type MeimeiContextType = {
   mode: ModeType
-  setMode: (newMode: "focus" | "companion") => void
+  setMode: (newMode: ModeType) => void
   reaction: string
   setReaction: (newReaction: string) => void
 }

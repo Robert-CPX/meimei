@@ -19,7 +19,7 @@ const SignedInBit = () => {
               afterSignOutUrl="/sign-in"
               appearance={{
                 elements: {
-                  avatarBox: 'h-[48px] w-[48px] rounded-full bg-primary-orange flex-center',
+                  avatarBox: 'h-[48px] w-[48px] rounded-full bg-primary-orange flex items-center justify-center',
                 }
               }} />
             <Image src="/assets/icons/edit.svg" alt="Edit user profile" width={20} height={20} className="absolute bottom-[6px] left-[38px]" />

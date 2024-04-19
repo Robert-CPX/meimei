@@ -7,26 +7,19 @@ export const meimei_1 = {
   src: "/assets/videos/meimei_1.mp4"
 }
 
-export const ModesMobile = [
-  { value: "focus", route: "/" },
-  { value: "companion", route: "/" },
-  { value: "history", route: "/" }
-]
-
-export const Modes = [
-  { value: "focus", route: "/" },
-  { value: "companion", route: "/" }
-]
+export const TabMobileData = ["focus", "companion", "history"]
+export const TabData = ["focus", "companion"]
 
 export const TimeOptions = [
-  { id: "dsfdsafsd", value: "15", label: "15 min" },
-  { id: "dsfadfdsa", value: "20", label: "20 min" },
-  { id: "cxzvxzvcc", value: "25", label: "25 min" },
-  { id: "ghjhfhgfg", value: "30", label: "30 min" },
-  { id: "tyuuytuty", value: "35", label: "35 min" },
-  { id: "bnmbmbnmm", value: "40", label: "40 min" },
-  { id: "pupiouipu", value: "45", label: "45 min" },
+  { id: "a", value: "900", label: "15 min" },
+  { id: "b", value: "1200", label: "20 min" },
+  { id: "c", value: "1500", label: "25 min" },
+  { id: "d", value: "1800", label: "30 min" },
+  { id: "e", value: "2100", label: "35 min" },
+  { id: "f", value: "2400", label: "40 min" },
+  { id: "g", value: "2700", label: "45 min" },
 ]
 
 // Unique identifier for the countdown interval, used to clear the interval when the countdown is not needed
-export const COUNTDOWN_ID = 'time_editor_countdown_id';
+export const COUNTDOWN_ID = 'timer_countdown_id';
+export const COUNTDOWN_REMAINING_SECONDS = 'timer_countdown_remaining_seconds';
