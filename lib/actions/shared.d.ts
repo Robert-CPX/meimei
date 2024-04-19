@@ -27,3 +27,18 @@ export type CreateFeedbackParams = {
 export type GetUserByIdParams = {
   userId: string;
 }
+
+export type HaveConversationParams = {
+  content: string;
+  userId: string;
+}
+
+export type SetTimerParams = {
+  userId: string;
+  time: number;
+}
+
+export type SetModeParams = {
+  userId: string;
+  mode: string;
+}
