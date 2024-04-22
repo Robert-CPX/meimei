@@ -33,12 +33,12 @@ const TimeSelector = () => {
       {countdown ? (
         <div className='flex w-full items-center'>
           <div className='size-[40px]' />
-          <span className='background-opacity mx-auto flex h-14 w-[128px] items-center justify-center rounded-[28px] border border-primary-light text-[1rem] font-[500px] leading-[20px]'>
+          <span className='mx-auto flex h-14 w-[128px] items-center justify-center rounded-[28px] border border-primary-light bg-dark/50 text-[1rem] font-[500px] leading-[20px]'>
             {remainMinutes}:{remainSeconds}
           </span>
           <Button
             size="icon"
-            className='background-opacity size-[40px] rounded-full border border-primary-light'
+            className='size-[40px] rounded-full border border-primary-light bg-dark/50'
             onClick={handleCancel}
           >
             <X />
@@ -50,7 +50,7 @@ const TimeSelector = () => {
             {TimeOptions.map((timeOption) => (
               <Button
                 key={timeOption.id}
-                className={`time-selector-item ${time === parseInt(timeOption.value) && 'background-opacity !border-primary-light'}`}
+                className={`time-selector-item ${time === parseInt(timeOption.value) && '!border-primary-light bg-dark/50'}`}
                 onClick={() => setTime(parseInt(timeOption.value))}
               >
                 {timeOption.label}
@@ -59,7 +59,7 @@ const TimeSelector = () => {
           </div>
           <Button
             size="icon"
-            className='background-opacity size-[40px] rounded-full border border-primary-light'
+            className='size-[40px] rounded-full border border-primary-light bg-dark/50'
             onClick={handleConfirm}
           >
             <Check />

@@ -16,7 +16,7 @@ const Home = () => {
         {/* Brand menu only show on desktop */}
         <BrandMenu />
         {/* this section is on top */}
-        <section className="flex flex-col items-center justify-start gap-4">
+        <section className="z-10 flex flex-col items-center justify-start gap-4">
           {/* Mode Tabs disappear only when timer is running */}
           <ModeTabs />
           {/* Time Editor only show on desktop */}

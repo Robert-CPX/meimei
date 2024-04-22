@@ -11,15 +11,15 @@ import { useMeimei, ModeType } from "@/context/MeimeiProvider"
 import { useMeimeiTime } from "@/context/MeimeiTimeProvider"
 
 const ModeTabs = () => {
-  const [modes, setModes] = useState(window.innerWidth > 768 ? TabData : TabDataMobile);
+  const [modeData, setModeData] = useState(window.innerWidth > 768 ? TabData : TabDataMobile);
   const { mode: currentMode, setMode } = useMeimei();
   const { isRunning } = useMeimeiTime();
 
   const handleResize = () => {
     if (window.innerWidth > 768) {
-      setModes(TabData);
+      setModeData(TabData);
     } else {
-      setModes(TabDataMobile);
+      setModeData(TabDataMobile);
     }
   }
 
@@ -30,13 +30,13 @@ const ModeTabs = () => {
   }, []);
 
   return (
-    <div className={`relative isolate z-10 flex h-[44px] items-center justify-center md:w-[248px] ${isRunning && 'hidden'}`}>
-      <div className='absolute inset-0 -z-10 rounded-[22px] bg-dark opacity-50'></div>
+    <div className={`relative isolate flex h-[44px] items-center justify-center md:w-[248px] ${isRunning && 'hidden'}`}>
+      <div className='absolute inset-0 -z-10 rounded-[22px] bg-dark/50'></div>
       <Tabs defaultValue="companion" className='px-2 text-light'>
         <TabsList
           className="flex items-center justify-center gap-9 max-sm:gap-4"
           defaultValue={currentMode}>
-          {modes.map((mode) => (
+          {modeData.map((mode) => (
             <TabsTrigger
               key={mode.name}
               value={mode.value}

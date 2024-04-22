@@ -43,14 +43,14 @@ const ChatHistoryWidget = ({ chatHistory }: ChatHistoryWidgetProps) => {
       {chatHistory.map((message, index) => (
         <React.Fragment key={index}>
           {(index === chatHistory.length - 1 && message.role !== "user") ? (
-            <div className="chat-ai chat-bubble">
+            <div className="chat-ai chat-bubble-background">
               <span className="chat-text">
                 {displayResponse}
                 {!completedTyping && <CursorSVG />}
               </span>
             </div>
           ) : (
-            <div className={`chat-bubble ${message.role === "user" ? "chat-user" : "chat-ai"}`}>
+            <div className={`chat-bubble-background ${message.role === "user" ? "chat-user" : "chat-ai"}`}>
               <span className="chat-text">{message.content}</span>
             </div>
           )}

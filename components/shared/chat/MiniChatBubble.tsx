@@ -11,7 +11,7 @@ type MiniChatBubbleProps = {
 const MiniChatBubble = ({ handleAction }: MiniChatBubbleProps) => {
 
   return (
-    <Button size="icon" className="size-[48px] rounded-full bg-dark p-2 text-light opacity-50" onClick={handleAction}>
+    <Button size="icon" className="size-[48px] rounded-full bg-dark/50 p-2 text-light" onClick={handleAction}>
       <Image src="/assets/icons/bubble-small.svg" width={48} height={48} alt="chat bubble" />
     </Button>
   )

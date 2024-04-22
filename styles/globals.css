@@ -165,11 +165,11 @@ h6 {
   }
 
   .chat-container-desktop {
-    @apply backdrop-blur bg-dark bg-opacity-50 rounded-[20px];
+    @apply backdrop-blur bg-dark/50 rounded-[20px];
   }
 
-  .chat-bubble {
-    @apply bg-dark bg-opacity-50 rounded-[20px] px-5 py-3 max-w-[95%] shadow-md whitespace-pre-line break-words flex my-2;
+  .chat-bubble-background {
+    @apply bg-dark/50 rounded-[20px] px-5 py-3 max-w-[95%] shadow-md whitespace-pre-line break-words flex my-2;
   }
 
   .chat-user {
@@ -182,10 +182,6 @@ h6 {
 
   .chat-text {
     @apply font-normal text-[0.875rem] leading-[20px];
-  }
-
-  .background-opacity {
-    @apply bg-dark bg-opacity-50;
   }
 
   .chat-textarea {
