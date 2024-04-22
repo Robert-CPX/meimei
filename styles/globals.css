@@ -188,6 +188,18 @@ h6 {
     @apply font-light text-[0.875rem] leading-[17.5px] no-scrollbar min-h-12 resize-none rounded-[1.25rem] border-white bg-transparent pr-12 pt-3 placeholder:text-opacity-40 focus-visible:ring-0 text-light;
   }
 
+  .chat-bubble-background-mobile-history {
+    @apply px-5 py-3 max-w-[95%] whitespace-pre-line break-words flex my-2;
+  }
+
+  .chat-bubble-mobile-history-ai {
+    @apply mr-auto text-left justify-start rounded-b-[20px] rounded-tr-[20px] bg-[#EAE8E4];
+  }
+
+  .chat-bubble-mobile-history-user {
+    @apply ml-auto text-right justify-end rounded-t-[20px] rounded-bl-[20px] bg-[#D6DDFF];
+  }
+
   .mobile-nav-title {
     @apply font-[700px] text-[1rem] leading-[20px] uppercase;
   }
