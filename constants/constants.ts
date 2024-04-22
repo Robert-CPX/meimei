@@ -7,7 +7,7 @@ export const meimei_1 = {
   src: "/assets/videos/meimei_1.mp4"
 }
 
-export const TabMobileData = [
+export const TabDataMobile = [
   { name: "focus", value: "focus" },
   { name: "companion", value: "companion" },
   { name: "history", value: "dredge-up" }

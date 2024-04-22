@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import { TabData, TabMobileData } from "@/constants/constants"
+import { TabData, TabDataMobile } from "@/constants/constants"
 import {
   Tabs,
   TabsList,
@@ -15,14 +15,19 @@ const ModeTabs = () => {
   const { mode: currentMode, setMode } = useMeimei();
   const { isRunning } = useMeimeiTime();
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 768) {
-        setModes(TabData);
-      } else {
-        setModes(TabMobileData);
-      }
+  const handleResize = () => {
+    if (window.innerWidth > 768) {
+      setModes(TabData);
+    } else {
+      setModes(TabDataMobile);
     }
+  }
+
+  useEffect(() => {
+    // handle initial rendering
+    setModes(window.innerWidth > 768 ? TabData : TabDataMobile);
+
+    // handle subsequent resize
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
