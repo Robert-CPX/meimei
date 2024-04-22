@@ -1,5 +1,5 @@
 import MeimeiProvider from "@/context/MeimeiProvider";
-
+import { Toaster } from "@/components/ui/toaster"
 const RootLayout = ({
   children,
 }: Readonly<{
@@ -8,6 +8,7 @@ const RootLayout = ({
   return (
     <main className="relative h-full">
       <MeimeiProvider>{children}</MeimeiProvider>
+      <Toaster />
     </main>
   );
 }

@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Lexend_Deca, Lemon } from "next/font/google";
 import "@/styles/globals.css";
 import { ClerkProvider, RedirectToSignIn, SignedOut } from "@clerk/nextjs";
-import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: {
@@ -48,7 +47,6 @@ export default function RootLayout({
           <SignedOut>
             <RedirectToSignIn redirectUrl="/sign-in" />
           </SignedOut>
-          <Toaster />
         </ClerkProvider>
       </body>
     </html>

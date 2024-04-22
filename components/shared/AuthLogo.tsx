@@ -1,5 +1,3 @@
-import Image from "next/image"
-
 const AuthLogo = () => {
   return (
     <div className="flex flex-col items-center gap-4">
