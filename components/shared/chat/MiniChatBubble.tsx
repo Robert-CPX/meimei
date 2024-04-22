@@ -1,3 +1,4 @@
+// Desc: A button component that will be used in ChatRoom.tsx, toggle the chat room on and off.
 'use client'
 
 import { Button } from "@/components/ui/button"

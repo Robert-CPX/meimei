@@ -1,3 +1,5 @@
+// Desc: background for chat history on mobile
+
 'use client'
 import { useMeimei } from "@/context/MeimeiProvider"
 

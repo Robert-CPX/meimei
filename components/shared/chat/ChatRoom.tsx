@@ -1,6 +1,6 @@
 "use client"
 
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import InputControl from "./InputControl";
 import ChatHistoryWidget from "./ChatHistoryWidget";
 import { ChatResponse } from "@/constants";
@@ -21,7 +21,7 @@ const ChatRoom = () => {
   const [response, setResponse] = useState<ChatResponse | null>(null)// a response from AI
   const [prompt, setPrompt] = useState("");
   const { mode, reaction, setReaction } = useMeimei()
-  const [isSneaking, setIsSneaking] = useState(false)
+  const [isSneaking, setIsSneaking] = useState(false) // a flag to show/hide ChatHistory on desktop
   const { userId } = useAuth()
 
   // once user click the send btn, add user input to chat history
@@ -62,6 +62,7 @@ const ChatRoom = () => {
   }, [response])
 
   useEffect(() => {
+    // reset chat history's UI when mode changes
     setIsSneaking(false)
   }, [mode])
 

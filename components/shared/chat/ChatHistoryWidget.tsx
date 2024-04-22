@@ -1,3 +1,4 @@
+// Desc: Display chat history in ChatRoom.tsx, different design on mobile and desktop.
 "use client"
 
 import { useEffect, useRef, useState } from "react";

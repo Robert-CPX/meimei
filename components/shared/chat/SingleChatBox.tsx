@@ -1,3 +1,4 @@
+// Desc: This is a single chat box component that will be used on desktop when user switch to Focus mode. It will show the latest message from the chat history. It will be used in ChatRoom.tsx.
 type SingleChatBoxProps = {
   latestMessage: string
 }

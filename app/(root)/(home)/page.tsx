@@ -1,10 +1,9 @@
 import Meimei from "@/components/shared/Meimei"
 import ModeTabs from "@/components/shared/ModeTabs"
 import BrandMenu from "@/components/shared/brand-menu"
-import { ChatRoom, ChatMobileBackground } from "@/components/shared/chat"
+import { ChatRoom, ChatMobileBackground, ChatHistoryMobile } from "@/components/shared/chat"
 import ActionMenu from "@/components/shared/ActionMenu"
 import { TimeEditor, TimeSelector } from "@/components/shared/timer"
-import ChatHistoryMobile from "@/components/shared/chat/ChatHistoryMobile"
 
 const Home = () => {
   return (
@@ -16,6 +15,7 @@ const Home = () => {
       <div className="isolate flex h-full justify-between p-4 max-md:flex-col md:px-8">
         {/* Brand menu only show on desktop */}
         <BrandMenu />
+        {/* this section is on top */}
         <section className="flex flex-col items-center justify-start gap-4">
           {/* Mode Tabs disappear only when timer is running */}
           <ModeTabs />
