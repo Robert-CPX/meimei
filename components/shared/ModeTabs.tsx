@@ -11,7 +11,7 @@ import { useMeimei, ModeType } from "@/context/MeimeiProvider"
 import { useMeimeiTime } from "@/context/MeimeiTimeProvider"
 
 const ModeTabs = () => {
-  const [modes, setModes] = useState(TabData);
+  const [modes, setModes] = useState(window.innerWidth > 768 ? TabData : TabDataMobile);
   const { mode: currentMode, setMode } = useMeimei();
   const { isRunning } = useMeimeiTime();
 
@@ -24,9 +24,6 @@ const ModeTabs = () => {
   }
 
   useEffect(() => {
-    // handle initial rendering
-    setModes(window.innerWidth > 768 ? TabData : TabDataMobile);
-
     // handle subsequent resize
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
