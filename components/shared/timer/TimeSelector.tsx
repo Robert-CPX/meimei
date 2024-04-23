@@ -9,10 +9,13 @@ import { useMeimeiTime } from "@/context/MeimeiTimeProvider"
 
 // TimeSelector component only show on mobile
 const TimeSelector = () => {
+  // use choose the time, unit second
   const [time, setTime] = useState(0)
+  // display the remaining time
   const [remainMinutes, setRemainMinutes] = useState("--")
   const [remainSeconds, setRemainSeconds] = useState("--")
   const { mode } = useMeimei()
+  // store the remaining time on context
   const { time: countdown, setTime: setCountdown } = useMeimeiTime()
 
   const handleConfirm = () => {
@@ -27,6 +30,11 @@ const TimeSelector = () => {
     setRemainMinutes(Math.floor(countdown / 60).toString().padStart(2, '0'))
     setRemainSeconds((countdown % 60).toString().padStart(2, '0'))
   }, [countdown])
+
+  useEffect(() => {
+    if (mode !== 'focus') return;
+    setTime(1500);
+  }, [mode])
 
   return (
     <div className={`flex w-full flex-col items-center gap-3 text-primary-light md:hidden ${mode === 'companion' && "hidden"} ${mode === 'dredge-up' && "hidden"}`}>

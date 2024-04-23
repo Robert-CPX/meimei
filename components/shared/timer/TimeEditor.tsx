@@ -1,6 +1,6 @@
 'use client'
 
-import { use, useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { isNumberInRange, formatMinutesAndSeconds } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
@@ -9,9 +9,11 @@ import { useMeimeiTime } from "@/context/MeimeiTimeProvider"
 
 // TimeEditor component only show on desktop
 const TimeEditor = () => {
-  const [minutes, setMinutes] = useState("25")
+  const [minutes, setMinutes] = useState("00")
   const [seconds, setSeconds] = useState("00")
+  const minuteRef = useRef<HTMLInputElement>(null)
   const { mode } = useMeimei()
+  // store the remaining time on context
   const { time: countdown, setTime: setCountdown, isRunning } = useMeimeiTime()
 
   const handleMinutesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +30,6 @@ const TimeEditor = () => {
 
   // user start or stop the countdown
   const handleCountDownAction = () => {
-    console.log('handleCountDownAction:', isRunning)
     if (isRunning) {
       setCountdown(0);
     } else {
@@ -42,6 +43,14 @@ const TimeEditor = () => {
     setSeconds(formatMinutesAndSeconds((countdown % 60).toString()))
   }, [countdown])
 
+  useEffect(() => {
+    if (mode !== 'focus') return;
+    // set a default value when switch to focus mode
+    minuteRef.current?.focus();
+    setMinutes("25");
+    setSeconds("00");
+  }, [mode])
+
   return (
     <div className={`relative isolate flex h-[54px] items-center justify-center max-md:hidden md:w-[248px] ${(mode === 'companion' || mode === 'dredge-up') && "hidden"}`}>
       <div className="absolute inset-0 -z-10 rounded-[22px] bg-dark/50"></div>
@@ -50,6 +59,7 @@ const TimeEditor = () => {
           <Input
             id="minutes"
             className="input-time-editor"
+            ref={minuteRef}
             value={minutes}
             disabled={isRunning}
             onChange={handleMinutesChange}
