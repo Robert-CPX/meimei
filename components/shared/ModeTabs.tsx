@@ -9,9 +9,10 @@ import {
 } from "@/components/ui/tabs"
 import { useMeimei, ModeType } from "@/context/MeimeiProvider"
 import { useMeimeiTime } from "@/context/MeimeiTimeProvider"
+import { TabDataType } from "@/constants"
 
 const ModeTabs = () => {
-  const [modeData, setModeData] = useState(window.innerWidth > 768 ? TabData : TabDataMobile);
+  const [modeData, setModeData] = useState<TabDataType | null>(null);
   const { mode: currentMode, setMode } = useMeimei();
   const { isRunning } = useMeimeiTime();
 
@@ -24,6 +25,8 @@ const ModeTabs = () => {
   }
 
   useEffect(() => {
+    // handle initial resize
+    setModeData(window.innerWidth > 768 ? TabData : TabDataMobile);
     // handle subsequent resize
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -36,7 +39,7 @@ const ModeTabs = () => {
         <TabsList
           className="flex items-center justify-center gap-9 max-sm:gap-4"
           defaultValue={currentMode}>
-          {modeData.map((mode) => (
+          {modeData?.map((mode) => (
             <TabsTrigger
               key={mode.name}
               value={mode.value}
