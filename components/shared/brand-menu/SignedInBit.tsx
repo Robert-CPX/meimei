@@ -25,7 +25,7 @@ const SignedInBit = () => {
             <Image src="/assets/icons/edit.svg" alt="Edit user profile" width={20} height={20} className="absolute bottom-[6px] left-[38px]" />
             <div className="flex flex-col justify-start gap-2">
               <span className="text-500-18-22">{session?.user.username}</span>
-              <span className="text-400-14-17">{session?.user.emailAddresses[0].emailAddress}</span>
+              <span className="text-400-14-17 overflow-hidden text-ellipsis">{session?.user.emailAddresses[0].emailAddress}</span>
             </div>
           </DropdownMenuItem>
           <DropdownMenuSeparator className="separator" />

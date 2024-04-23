@@ -185,7 +185,7 @@ h6 {
   }
 
   .chat-textarea {
-    @apply font-light text-[0.875rem] leading-[17.5px] no-scrollbar min-h-12 resize-none rounded-[1.25rem] border-white bg-transparent pr-12 pt-3 placeholder:text-opacity-40 focus-visible:ring-0 text-light;
+    @apply font-light text-[0.875rem] leading-[17.5px] no-scrollbar min-h-[48px] resize-none rounded-[1.25rem] border-white bg-transparent pr-12 placeholder:text-opacity-40 focus-visible:ring-0 text-light pt-[12px];
   }
 
   .chat-bubble-background-mobile-history {
@@ -209,7 +209,7 @@ h6 {
   }
 
   .input-time-editor {
-    @apply size-[30px] border-none bg-transparent p-1 text-[1.25rem] font-[500px] leading-[25px] focus:bg-dark focus-visible:ring-0 focus-visible:ring-offset-0;
+    @apply size-[32px] border-none bg-transparent p-1 text-[1.25rem] font-[500px] leading-[25px] focus:bg-dark focus-visible:ring-0 focus-visible:ring-offset-0;
   }
 
   .time-selector-item {

@@ -2,12 +2,14 @@
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { ClerkLoaded, ClerkLoading } from "@clerk/nextjs"
-import { Loader2, ChevronUp } from "lucide-react"
+import { Loader2, ChevronUp, ChevronDown } from "lucide-react"
 import SignedInBit from "./SignedInBit"
 import { useMeimei } from "@/context/MeimeiProvider"
+import { useState } from "react"
 
 const BrandMenu = () => {
   const { mode } = useMeimei()
+  const [isOpen, setIsOpen] = useState(false)
   return (
     <>
       {mode === 'companion' ? (
@@ -16,11 +18,13 @@ const BrandMenu = () => {
             <Loader2 size={48} className="size-12 animate-spin text-dark" />
           </ClerkLoading>
           <ClerkLoaded>
-            <DropdownMenu>
+            <DropdownMenu
+              onOpenChange={(open) => setIsOpen(open)}
+            >
               <DropdownMenuTrigger asChild>
                 <Button className="h-[48px] w-[198px] gap-2 font-lemon text-[1.25rem] font-normal leading-[26px] focus-visible:ring-0 focus-visible:ring-offset-0">
                   StudyCafe
-                  <ChevronUp />
+                  {isOpen ? <ChevronDown /> : <ChevronUp />}
                 </Button>
               </DropdownMenuTrigger>
               <SignedInBit />

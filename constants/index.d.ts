@@ -7,3 +7,8 @@ export type VideoSource = {
   src: string;
   label: string;
 }
+
+export type TabDataType = {
+  name: string;
+  value: string;
+}[]
