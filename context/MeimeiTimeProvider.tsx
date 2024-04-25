@@ -27,6 +27,7 @@ const MeimeiTimeProvider = ({
 
   useEffect(() => {
     // we want to keep timer alive after refreshing the page, so can't just rely on state, also need to check sessionStorage
+    //TODO: localStorage might be a better choice
     if (!isRunning) {
       const storedTime = parseInt(sessionStorage.getItem(COUNTDOWN_REMAINING_SECONDS) || "0")
       if (storedTime > 0) {
