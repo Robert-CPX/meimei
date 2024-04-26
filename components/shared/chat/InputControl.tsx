@@ -57,7 +57,7 @@ const InputControl = ({
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Tell me about you today!"
-          className="chat-textarea"
+          className="chat-textarea focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
         />
         <Button disabled={!prompt} className="absolute bottom-1 right-0">
           <Image src="/assets/icons/send.svg" alt="send" width={24} height={24} />

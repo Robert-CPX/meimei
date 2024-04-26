@@ -33,7 +33,7 @@ const Home = () => {
           <ActionMenu />
         </section>
         {/* ChatRoom has threen variants, two for desktop and one for mobile */}
-        <section className="flex max-md:mb-4 max-md:max-h-[35%] lg:basis-[23%]">
+        <section className="flex max-md:mb-4 max-md:max-h-[45%] lg:basis-[23%]">
           <ChatRoom />
         </section>
         {/* ChatMobileBackground is absolute positioned background for mobile chat */}

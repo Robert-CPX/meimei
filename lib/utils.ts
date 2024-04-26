@@ -45,3 +45,11 @@ export const formatMinutesAndSeconds = (str: string | null): string => {
 
   throw new Error(`Invalid number: ${str}`);
 };
+
+export const generateTimeOptions = (): number[] => {
+  const list: number[] = [];
+  for (let i = 15; i <= 120; i += 5) {
+    list.push(i);
+  }
+  return list;
+};

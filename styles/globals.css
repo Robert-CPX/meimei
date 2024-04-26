@@ -169,7 +169,7 @@ h6 {
   }
 
   .chat-bubble-background {
-    @apply bg-dark/50 rounded-[20px] px-5 py-3 max-w-[95%] shadow-md whitespace-pre-line break-words flex my-2;
+    @apply bg-dark/50 rounded-[20px] px-5 py-3 max-w-[95%] whitespace-pre-line break-words flex my-2;
   }
 
   .chat-user {
@@ -185,7 +185,7 @@ h6 {
   }
 
   .chat-textarea {
-    @apply no-scrollbar min-h-[48px] resize-none rounded-[1.25rem] border-white bg-transparent pr-12 text-[0.875rem] font-light leading-[17.5px] text-light placeholder:text-opacity-40 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 max-lg:min-h-[50px] max-lg:pt-[8px] max-md:pt-[14px] lg:pt-[14px];
+    @apply no-scrollbar min-h-[48px] resize-none rounded-[1.25rem] border-white bg-transparent pr-12 text-[0.875rem] font-light leading-[17.5px] text-light placeholder:text-opacity-40 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 max-lg:min-h-[50px] max-lg:pt-[8px] max-md:pt-[14px] lg:pt-[14px] backdrop-blur-md;
   }
 
   .chat-bubble-background-mobile-history {

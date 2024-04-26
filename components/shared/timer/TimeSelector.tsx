@@ -1,11 +1,11 @@
 'use client'
 
-import { TimeOptions } from '@/constants/constants'
 import { Button } from "@/components/ui/button"
 import { Check, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useMeimei } from "@/context/MeimeiProvider"
 import { useMeimeiTime } from "@/context/MeimeiTimeProvider"
+import { generateTimeOptions } from '@/lib/utils'
 
 // TimeSelector component only show on mobile
 const TimeSelector = () => {
@@ -15,9 +15,11 @@ const TimeSelector = () => {
   const [remainMinutes, setRemainMinutes] = useState("--")
   const [remainSeconds, setRemainSeconds] = useState("--")
   const { mode } = useMeimei()
+
+  const timeOptions = generateTimeOptions()
+
   // store the remaining time on context
   const { time: countdown, setTime: setCountdown } = useMeimeiTime()
-
   const handleConfirm = () => {
     setCountdown(time);
   }
@@ -55,13 +57,13 @@ const TimeSelector = () => {
       ) : (
         <>
           <div className='time-selector-background no-scrollbar flex h-12 w-screen overflow-x-scroll'>
-            {TimeOptions.map((timeOption) => (
+            {timeOptions.map((option) => (
               <Button
-                key={timeOption.id}
-                className={`time-selector-item ${time === parseInt(timeOption.value) && '!border-primary-light bg-dark/50'}`}
-                onClick={() => setTime(parseInt(timeOption.value))}
+                key={`${option} min`}
+                className={`time-selector-item ${time === (option * 60) && '!border-primary-light bg-dark/50'}`}
+                onClick={() => setTime(option * 60)}
               >
-                {timeOption.label}
+                {`${option} min`}
               </Button>
             ))}
           </div>

@@ -37,13 +37,13 @@ const ModeTabs = () => {
       <div className='absolute inset-0 -z-10 rounded-[22px] bg-dark/50'></div>
       <Tabs defaultValue="companion" className='px-2 text-light'>
         <TabsList
-          className="flex items-center justify-center gap-9 max-sm:gap-4"
+          className="flex items-center justify-center gap-4"
           defaultValue={currentMode}>
           {modeData?.map((mode) => (
             <TabsTrigger
               key={mode.name}
               value={mode.value}
-              className={`min-w-[80px] rounded-[20px] px-4 text-[0.75rem] font-[700] uppercase leading-[15px] ${currentMode === mode.value && 'border border-dark bg-primary text-dark outline outline-offset-[-2] outline-primary'}`}
+              className={`min-w-[80px] rounded-[20px] px-5 py-2 text-[0.75rem] font-[700] uppercase leading-[15px] ${currentMode === mode.value && 'border border-dark bg-primary text-dark outline outline-offset-[-2] outline-primary'}`}
               onClick={() => setMode(mode.value as ModeType)}
             >
               {mode.name}
