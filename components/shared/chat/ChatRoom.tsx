@@ -72,7 +72,7 @@ const ChatRoom = () => {
     <>
       {!isRunning || isSneaking ? (
         <section className="chat-container">
-          <div className="no-scrollbar flex grow flex-col overflow-y-auto overscroll-contain">
+          <div className="no-scrollbar flex flex-col overflow-y-auto overscroll-contain md:grow">
             <ChatHistoryWidget chatHistory={chatHistory} />
           </div>
           <InputControl

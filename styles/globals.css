@@ -161,11 +161,11 @@ h6 {
   }
 
   .chat-container-desktop {
-    @apply backdrop-blur bg-dark/50 rounded-[20px];
+    @apply backdrop-blur bg-dark/50 rounded-[20px] gap-2;
   }
 
   .chat-container {
-    @apply md:chat-container-desktop max-md:chat-container-mobile flex flex-col gap-2 p-2 basis-full;
+    @apply md:chat-container-desktop max-md:chat-container-mobile flex flex-col p-2 basis-full justify-end;
   }
 
   .chat-bubble-container {
