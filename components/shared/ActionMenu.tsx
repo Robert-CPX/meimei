@@ -12,9 +12,6 @@ const ActionMenu = () => {
       <Link href="/setting" className="flex items-center justify-center bg-transparent">
         <Image src="/assets/icons/setting.svg" alt="settings" width={48} height={48} />
       </Link>
-      <Link href="/" className="flex items-center justify-center bg-transparent">
-        <Image src="/assets/icons/heart.svg" alt="like" width={48} height={48} />
-      </Link>
     </div>
   )
 }
