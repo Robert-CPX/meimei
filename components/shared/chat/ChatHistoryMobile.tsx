@@ -26,7 +26,7 @@ const ChatHistoryMobile = () => {
               <div className="flex items-start justify-start gap-1">
                 <Image src="assets/images/meimei_profile.svg" width={48} height={48} alt="avatar" className="my-2 size-[48px] rounded-full bg-[#D6DDFF]" />
                 <div
-                  className="chat-bubble-background-mobile-history chat-bubble-mobile-history-ai"
+                  className="chat-bubble-container-mobile-history chat-bubble-mobile-history-ai"
                 >
                   <span className="chat-text text-dark">{message.content}</span>
                 </div>
@@ -34,7 +34,7 @@ const ChatHistoryMobile = () => {
 
             )}
             <div
-              className="chat-bubble-background-mobile-history chat-bubble-mobile-history-user"
+              className="chat-bubble-container-mobile-history chat-bubble-mobile-history-user"
             >
               <span className="chat-text text-dark">{message.content}</span>
             </div>

@@ -28,12 +28,12 @@ const Home = () => {
           {/* Time Selector only show on mobile */}
           <TimeSelector />
         </section>
-        {/* ActionMenu is for desktop only */}
+        {/* ActionMenu is for non-desktop only */}
         <section className="mb-auto mt-4 self-end md:hidden">
           <ActionMenu />
         </section>
         {/* ChatRoom has threen variants, two for desktop and one for mobile */}
-        <section className="flex max-md:mb-4 max-md:max-h-[45%] lg:basis-[23%]">
+        <section className="flex basis-[23%] max-md:mb-4 max-md:max-h-[45%]">
           <ChatRoom />
         </section>
         {/* ChatMobileBackground is absolute positioned background for mobile chat */}

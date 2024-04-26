@@ -156,10 +156,6 @@ h6 {
     @apply fixed left-0 top-0 -z-50 size-full overflow-hidden;
   }
 
-  .chat-container {
-    @apply flex grow flex-col p-2 gap-2 md:chat-container-desktop max-md:chat-container-mobile;
-  }
-
   .chat-container-mobile {
     @apply bg-transparent;
   }
@@ -168,36 +164,40 @@ h6 {
     @apply backdrop-blur bg-dark/50 rounded-[20px];
   }
 
-  .chat-bubble-background {
+  .chat-container {
+    @apply md:chat-container-desktop max-md:chat-container-mobile flex flex-col gap-2 p-2 basis-full;
+  }
+
+  .chat-bubble-container {
     @apply bg-dark/50 rounded-[20px] px-5 py-3 max-w-[95%] whitespace-pre-line break-words flex my-2;
   }
 
   .chat-user {
-    @apply ml-auto text-right justify-end text-primary-light;
+    @apply text-left text-primary-light self-end;
   }
 
   .chat-ai {
-    @apply mr-auto text-left justify-start text-light;
+    @apply text-left text-light self-start;
   }
 
   .chat-text {
-    @apply font-normal text-[0.875rem] leading-[20px];
+    @apply font-[400] text-[0.875rem] leading-[20px] block text-pretty break-words hyphens-auto;
   }
 
   .chat-textarea {
-    @apply no-scrollbar min-h-[48px] resize-none rounded-[1.25rem] border-white bg-transparent pr-12 text-[0.875rem] font-light leading-[17.5px] text-light placeholder:text-opacity-40 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 max-lg:min-h-[50px] max-lg:pt-[8px] max-md:pt-[14px] lg:pt-[14px] backdrop-blur-md;
+    @apply no-scrollbar min-h-[48px] resize-none rounded-[1.25rem] border-white bg-transparent pr-12 text-[0.875rem] font-light leading-[17.5px] text-light placeholder:text-opacity-40 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 max-lg:min-h-[50px] max-lg:pt-[8px] max-md:pt-[14px] lg:pt-[14px] backdrop-blur-md text-wrap;
   }
 
-  .chat-bubble-background-mobile-history {
-    @apply px-5 py-3 max-w-[95%] whitespace-pre-line break-words flex my-2;
+  .chat-bubble-container-mobile-history {
+    @apply my-2 flex max-w-[95%] justify-start hyphens-auto whitespace-pre-line break-words px-5 py-3 text-left;
   }
 
   .chat-bubble-mobile-history-ai {
-    @apply mr-auto text-left justify-start rounded-b-[20px] rounded-tr-[20px] bg-[#EAE8E4];
+    @apply mr-auto rounded-b-[20px] rounded-tr-[20px] bg-[#EAE8E4];
   }
 
   .chat-bubble-mobile-history-user {
-    @apply ml-auto text-right justify-end rounded-t-[20px] rounded-bl-[20px] bg-[#D6DDFF];
+    @apply ml-auto rounded-t-[20px] rounded-bl-[20px] bg-[#D6DDFF];
   }
 
   .mobile-nav-title {
