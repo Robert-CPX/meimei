@@ -24,7 +24,12 @@ export const handleError = (error: unknown) => {
 
 export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export const isNumberInRange = (str: string): boolean => {
+export const isMinuteInRange = (str: string): boolean => {
+  const num = Number(str);
+  return !isNaN(num) && num >= 0 && num <= 120;
+}
+
+export const isSecondInRange = (str: string): boolean => {
   const num = Number(str);
   return !isNaN(num) && num >= 0 && num <= 60;
 }
@@ -35,7 +40,7 @@ export const formatMinutesAndSeconds = (str: string | null): string => {
   }
 
   const num = Number(str);
-  if (!isNaN(num) && num >= 0 && num <= 60) {
+  if (!isNaN(num) && num >= 0) {
     if (num >= 0 && num < 10) {
       return `0${num}`;
     } else {

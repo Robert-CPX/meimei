@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { isNumberInRange, formatMinutesAndSeconds } from "@/lib/utils"
+import { isMinuteInRange, isSecondInRange, formatMinutesAndSeconds } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 import { useMeimei } from "@/context/MeimeiProvider"
 import { useMeimeiTime } from "@/context/MeimeiTimeProvider"
@@ -18,13 +18,13 @@ const TimeEditor = () => {
 
   const handleMinutesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    if (!isNumberInRange(value)) { return; }
+    if (!isMinuteInRange(value)) { return; }
     setMinutes(formatMinutesAndSeconds(value));
   };
 
   const handleSecondsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    if (!isNumberInRange(value)) { return; }
+    if (!isSecondInRange(value)) { return; }
     setSeconds(formatMinutesAndSeconds(value));
   };
 
@@ -55,7 +55,7 @@ const TimeEditor = () => {
     <div className={`relative isolate flex h-[54px] items-center justify-center max-md:hidden md:w-[248px] ${(mode === 'companion' || mode === 'dredge-up') && "hidden"}`}>
       <div className="absolute inset-0 -z-10 rounded-[22px] bg-dark/50"></div>
       <div className="flex w-full items-center justify-between px-3 text-primary-light">
-        <div className="ml-10 flex items-center justify-center gap-1">
+        <div className="ml-6 flex items-center justify-center gap-1">
           <Input
             id="minutes"
             className="input-time-editor"

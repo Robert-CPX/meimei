@@ -209,7 +209,7 @@ h6 {
   }
 
   .input-time-editor {
-    @apply size-[32px] border-none bg-transparent p-1 text-[1.25rem] font-[500] leading-[25px] focus:bg-dark focus-visible:ring-0 focus-visible:ring-offset-0;
+    @apply h-[32px] w-[46px] border-none bg-transparent p-1 text-[1.25rem] font-[500] leading-[25px] focus:bg-dark focus-visible:ring-0 focus-visible:ring-offset-0 text-center;
   }
 
   .time-selector-item {
