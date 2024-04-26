@@ -9,6 +9,7 @@ import SingleChatBox from "./SingleChatBox";
 import MiniChatBubble from "./MiniChatBubble";
 import { haveConversation } from "@/lib/actions/interaction.actions";
 import { useAuth } from "@clerk/nextjs";
+import { useMeimeiTime } from "@/context/MeimeiTimeProvider";
 
 const systemPrompt = {
   role: "system",
@@ -23,6 +24,7 @@ const ChatRoom = () => {
   const { mode, reaction, setReaction } = useMeimei()
   const [isSneaking, setIsSneaking] = useState(false) // a flag to show/hide ChatHistory on desktop
   const { userId } = useAuth()
+  const { isRunning } = useMeimeiTime()
 
   // once user click the send btn, add user input to chat history
   const handleUserInput = async (prompt: string) => {
@@ -68,7 +70,7 @@ const ChatRoom = () => {
 
   return (
     <>
-      {mode === 'companion' || isSneaking ? (
+      {!isRunning || isSneaking ? (
         <section className="chat-container">
           <div className="no-scrollbar flex grow flex-col overflow-y-auto overscroll-contain">
             <ChatHistoryWidget chatHistory={chatHistory} />
