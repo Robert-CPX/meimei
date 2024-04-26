@@ -185,7 +185,7 @@ h6 {
   }
 
   .chat-textarea {
-    @apply font-light text-[0.875rem] leading-[17.5px] no-scrollbar min-h-[48px] resize-none rounded-[1.25rem] border-white bg-transparent pr-12 placeholder:text-opacity-40 focus-visible:ring-0 text-light pt-[12px];
+    @apply font-light text-[0.875rem] leading-[17.5px] no-scrollbar min-h-[48px] resize-none rounded-[1.25rem] border-white bg-transparent pr-12 placeholder:text-opacity-40 focus-visible:ring-0 text-light max-md:pt-[14px] max-lg:min-h-[50px] max-lg:pt-[8px] lg:pt-[14px];
   }
 
   .chat-bubble-background-mobile-history {
