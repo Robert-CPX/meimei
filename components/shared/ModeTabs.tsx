@@ -43,7 +43,7 @@ const ModeTabs = () => {
             <TabsTrigger
               key={mode.name}
               value={mode.value}
-              className={`min-w-[80px] rounded-[20px] px-4 text-[0.75rem] font-[700px] uppercase leading-[15px] ${currentMode === mode.value && 'border border-dark bg-primary text-dark outline outline-offset-[-2] outline-primary'}`}
+              className={`min-w-[80px] rounded-[20px] px-4 text-[0.75rem] font-[700] uppercase leading-[15px] ${currentMode === mode.value && 'border border-dark bg-primary text-dark outline outline-offset-[-2] outline-primary'}`}
               onClick={() => setMode(mode.value as ModeType)}
             >
               {mode.name}

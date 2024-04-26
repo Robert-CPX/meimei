@@ -74,7 +74,7 @@ const TimeEditor = () => {
           />
         </div>
         <Button
-          className="h-[40px] w-[80px] rounded-[20px] bg-dark text-[1rem] font-[500px] leading-[20px]"
+          className="h-[40px] w-[80px] rounded-[20px] bg-dark text-[1rem] font-[500] leading-[20px]"
           onClick={handleCountDownAction}
         >
           {isRunning ? "Stop" : "Start"}

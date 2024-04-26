@@ -41,7 +41,7 @@ const TimeSelector = () => {
       {countdown ? (
         <div className='flex w-full items-center'>
           <div className='size-[40px]' />
-          <span className='mx-auto flex h-14 w-[128px] items-center justify-center rounded-[28px] border border-primary-light bg-dark/50 text-[1rem] font-[500px] leading-[20px]'>
+          <span className='mx-auto flex h-14 w-[128px] items-center justify-center rounded-[28px] border border-primary-light bg-dark/50 text-[1rem] font-[500] leading-[20px]'>
             {remainMinutes}:{remainSeconds}
           </span>
           <Button

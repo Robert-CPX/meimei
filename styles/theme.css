@@ -36,14 +36,14 @@
   }
 
   .text-500-18-22 {
-    @apply font-[500px] text-[1.125rem] leading-[22.5px];
+    @apply font-[500] text-[1.125rem] leading-[22.5px];
   }
   .text-500-10-12 {
-    @apply font-[500px] text-[0.625rem] leading-[12.5px];
+    @apply font-[500] text-[0.625rem] leading-[12.5px];
   }
 
   .text-500-20-25 {
-    @apply font-[500px] text-[1.25rem] leading-[25px];
+    @apply font-[500] text-[1.25rem] leading-[25px];
   }
 
   .separator {
