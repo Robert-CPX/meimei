@@ -4,9 +4,11 @@ import { DropdownMenuContent, DropdownMenuSeparator, DropdownMenuGroup, Dropdown
 import { SignOutButton, SignedIn, UserButton, useClerk } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from 'next/navigation'
 
 const SignedInBit = () => {
   const { session, openUserProfile } = useClerk()
+  const router = useRouter()
   return (
     <SignedIn>
       <DropdownMenuContent className="ml-8 mt-3 w-[288px] rounded-[20px] border border-dark bg-light">
@@ -16,7 +18,6 @@ const SignedInBit = () => {
             className="flex cursor-pointer items-center gap-4"
           >
             <UserButton
-              afterSignOutUrl="/sign-in"
               appearance={{
                 elements: {
                   avatarBox: 'h-[48px] w-[48px] rounded-full bg-primary-orange flex items-center justify-center',
@@ -30,10 +31,13 @@ const SignedInBit = () => {
           </DropdownMenuItem>
           <DropdownMenuSeparator className="separator" />
           <DropdownMenuItem className="h-[52px] cursor-pointer text-[1rem] font-normal leading-[20px]">
-            <Link href="/feedback">Send us feedback!</Link>
+            <Link href="/welcome">Send us feedback!</Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator className="separator" />
-          <SignOutButton signOutOptions={{ sessionId: session?.id }}>
+          <SignOutButton
+            signOutOptions={{ sessionId: session?.id }}
+            signOutCallback={() => router.push('/welcome')}
+          >
             <DropdownMenuItem className="h-[52px] cursor-pointer text-[1rem] font-normal leading-[20px] text-[#EB3A3A]">Log out</DropdownMenuItem>
           </SignOutButton>
         </DropdownMenuGroup>

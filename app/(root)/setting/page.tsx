@@ -6,9 +6,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { ChevronRight } from "lucide-react"
 import MobileNavigationBar from "@/components/shared/MobileNavigationBar"
+import { useRouter } from 'next/navigation'
 
 const Page = () => {
   const { session, openUserProfile } = useClerk()
+  const router = useRouter()
   return (
     <div className='mx-6 mt-4 flex flex-col gap-4'>
       <MobileNavigationBar title="Settings" rootPath="/" />
@@ -17,7 +19,6 @@ const Page = () => {
         onClick={() => openUserProfile()}
       >
         <UserButton
-          afterSignOutUrl="/sign-in"
           appearance={{
             elements: {
               avatarBox: 'h-[48px] w-[48px] rounded-full bg-primary-orange flex items-center justify-center',
@@ -35,7 +36,10 @@ const Page = () => {
         <ChevronRight size={24} />
       </Link>
 
-      <SignOutButton signOutOptions={{ sessionId: session?.id }}>
+      <SignOutButton
+        signOutOptions={{ sessionId: session?.id }}
+        signOutCallback={() => router.push('/welcome')}
+      >
         <Button className="h-[52px] cursor-pointer rounded-[20px] bg-light text-left text-[1rem] font-normal leading-[20px] text-[#EB3A3A]">Log out</Button>
       </SignOutButton>
     </div>
