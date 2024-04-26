@@ -4,8 +4,12 @@ import BrandMenu from "@/components/shared/brand-menu"
 import { ChatRoom, ChatMobileBackground, ChatHistoryMobile } from "@/components/shared/chat"
 import ActionMenu from "@/components/shared/ActionMenu"
 import { TimeEditor, TimeSelector } from "@/components/shared/timer"
+import { redirect } from 'next/navigation'
+import { auth } from '@clerk/nextjs'
 
 const Home = () => {
+  const { userId } = auth()
+  if (!userId) redirect('/sign-in')
   return (
     <>
       {/* Meimei as background */}
