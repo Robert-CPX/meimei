@@ -26,9 +26,11 @@ const InputControl = ({
   }
 
   const onEnter = useCallback((event: KeyboardEvent) => {
+    let trimmedPrompt = prompt.trim()
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault()
-      handleInput(prompt)
+      if (!trimmedPrompt) return
+      handleInput(trimmedPrompt)
       setPrompt("")
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,7 +61,7 @@ const InputControl = ({
           placeholder="Tell me about you today!"
           className="chat-textarea focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
         />
-        <Button disabled={!prompt} className="absolute bottom-1 right-0">
+        <Button disabled={!prompt.trim()} className="absolute bottom-1 right-0">
           <Image src="/assets/icons/send.svg" alt="send" width={24} height={24} />
         </Button>
       </div>
