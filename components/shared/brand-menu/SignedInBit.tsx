@@ -31,7 +31,7 @@ const SignedInBit = () => {
           </DropdownMenuItem>
           <DropdownMenuSeparator className="separator" />
           <DropdownMenuItem className="h-[52px] cursor-pointer text-[1rem] font-normal leading-[20px]">
-            <Link href="/welcome">Send us feedback!</Link>
+            <Link href="/feedback">Send us feedback!</Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator className="separator" />
           <SignOutButton
