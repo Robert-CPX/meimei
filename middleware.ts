@@ -14,7 +14,7 @@ export default authMiddleware({
     '/welcome',
   ],
   ignoredRoutes: [
-    '/api/chatgpt',
+    '/api/inworld',
     '/api/webhooks',
   ],
 });
