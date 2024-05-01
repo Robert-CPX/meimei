@@ -8,7 +8,6 @@ import { SignedOut } from "@clerk/nextjs"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@clerk/nextjs"
-import Meimei from "@/components/shared/Meimei"
 
 const Page = () => {
   const router = useRouter()
@@ -18,7 +17,7 @@ const Page = () => {
     if (!userId) return;
     const redirectTimeout = setTimeout(() => {
       router.push("/");
-    }, 3500);
+    }, 15000);
     return () => {
       if (redirectTimeout) {
         clearTimeout(redirectTimeout);
@@ -29,7 +28,12 @@ const Page = () => {
   return (
     <div className="relative flex size-full">
       <div className="meimei-main">
-        <Meimei />
+        <video
+          autoPlay muted playsInline loop
+          className="size-full object-cover"
+        >
+          <source src="assets/videos/onboarding.mp4" type="video/mp4" />
+        </video>
       </div>
       {!userId && (
         <div className="absolute inset-x-0 bottom-20 mx-auto w-2/5 lg:w-[280px]">
