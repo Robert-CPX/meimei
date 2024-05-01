@@ -37,7 +37,7 @@ const ChatRoom = () => {
 
   const askAI = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/inworld`, {
+      const response = await fetch('api/inworld', {
         method: 'POST',
         body: JSON.stringify({
           text: prompt,
