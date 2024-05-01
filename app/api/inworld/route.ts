@@ -6,7 +6,7 @@ export async function POST(req: Request) {
   const character = "workspaces/default-upyjqviok36wsxukslekpq/characters/emi2"
   const url = `https://api.inworld.ai/v1/${character}:simpleSendText`
 
-  const { text, endUserFullname, endUserId } = await req.json()
+  const { text, endUserFullname, endUserId, conversationId } = await req.json()
   if (!text) return NextResponse.error()
 
   try {
@@ -17,8 +17,9 @@ export async function POST(req: Request) {
         'authorization': my_key,
       },
       body: JSON.stringify({
-        character: character,
+        character,
         text,
+        sessionId: conversationId,
         endUserFullname,
         endUserId,
       }),

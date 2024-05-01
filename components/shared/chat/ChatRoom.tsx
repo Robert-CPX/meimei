@@ -42,12 +42,15 @@ const ChatRoom = () => {
         body: JSON.stringify({
           text: prompt,
           endUserFullname: session?.user.username,
-          endUserId: userId
+          endUserId: userId,
+          conversationId: localStorage.getItem('inworld-sessionId') ?? "",
         }),
       })
       const data = await response.json()
       const behavior = data.emotion.behavior as MEIMEI_BEHAVIOR
       setResponse({ role: "system", content: data.reply + MEIMEI_EMOJI[behavior] })
+      // save sessionId into local storage
+      localStorage.setItem('inworld-sessionId', data.sessionId)
     } catch (error) {
       setResponse({ role: "system", content: "Meimei really don't know what to say to you:(" })
     }
