@@ -7,9 +7,9 @@ import { ChatResponse } from "@/constants";
 import { useMeimei } from "@/context/MeimeiProvider";
 import SingleChatBox from "./SingleChatBox";
 import MiniChatBubble from "./MiniChatBubble";
-import { haveConversation } from "@/lib/actions/interaction.actions";
-import { useAuth } from "@clerk/nextjs";
+import { useAuth, useClerk } from "@clerk/nextjs";
 import { useMeimeiTime } from "@/context/MeimeiTimeProvider";
+import { MEIMEI_EMOJI, MEIMEI_BEHAVIOR } from "@/constants/constants";
 
 const systemPrompt = {
   role: "system",
@@ -25,27 +25,29 @@ const ChatRoom = () => {
   const [isSneaking, setIsSneaking] = useState(false) // a flag to show/hide ChatHistory on desktop
   const { userId } = useAuth()
   const { isRunning } = useMeimeiTime()
+  const { session } = useClerk()
 
   // once user click the send btn, add user input to chat history
   const handleUserInput = async (prompt: string) => {
     // update chat history immediately once user press enter key
     setChatHistory((prev) => [...prev, { role: "user", content: prompt }])
-    // save user input to db
-    if (userId) {
-      await haveConversation({ content: prompt, userId: userId })
-    }
     askAI()
     setPrompt("")
   }
 
   const askAI = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/chatgpt`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/inworld`, {
         method: 'POST',
-        body: JSON.stringify(chatHistory),
+        body: JSON.stringify({
+          text: prompt,
+          endUserFullname: session?.user.username,
+          endUserId: userId
+        }),
       })
       const data = await response.json()
-      setResponse(data.message)
+      const behavior = data.emotion.behavior as MEIMEI_BEHAVIOR
+      setResponse({ role: "system", content: data.reply + MEIMEI_EMOJI[behavior] })
     } catch (error) {
       setResponse({ role: "system", content: "Meimei really don't know what to say to you:(" })
     }

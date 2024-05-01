@@ -19,6 +19,7 @@ const ChatHistoryWidget = ({ chatHistory }: ChatHistoryWidgetProps) => {
     if (!chatHistory.length) return
     setCompletedTyping(false)
     const lastResponse = chatHistory[chatHistory.length - 1].content
+    if (!lastResponse) throw new Error("ChatResponse content is empty")
     let i = 0;
     const intervalId = setInterval(() => {
       setDisplayResponse(lastResponse.slice(0, i))

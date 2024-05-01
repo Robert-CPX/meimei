@@ -21,6 +21,30 @@ export const TabData = [
 export const COUNTDOWN_ID = 'timer_countdown_id';
 export const COUNTDOWN_REMAINING_SECONDS = 'timer_countdown_remaining_seconds';
 
+// https://docs.inworld.ai/docs/tutorial-basics/personality-emotion/
+export type MEIMEI_BEHAVIOR = "AFFECTION" | "ANGER" | "BELLIGERENCE" | "CONTEMPT" | "CRITICISM" | "DEFENSIVENESS" | "DISGUST" | "DOMINEERING" | "HUMOR" | "INTEREST" | "JOY" | "SADNESS" | "STONEWALLING" | "SURPRISE" | "TENSE" | "TENSION" | "VALIDATION" | "WHINING"
+
+export const MEIMEI_EMOJI = {
+  "AFFECTION": "🥰",
+  "ANGER": "😡",
+  "BELLIGERENCE": "🤬",
+  "CONTEMPT": "😤",
+  "CRITICISM": "👎",
+  "DEFENSIVENESS": "✋",
+  "DISGUST": "🤮",
+  "DOMINEERING": "😠",
+  "HUMOR": "🤣",
+  "INTEREST": "🤔",
+  "JOY": "😁",
+  "SADNESS": "😞",
+  "STONEWALLING": "🤐",
+  "SURPRISE": "😲",
+  "TENSE": "😬",
+  "TENSION": "😰",
+  "VALIDATION": "👍",
+  "WHINING": "😩"
+}
+
 export const MockChatHistory = [
   {
     "role": "user",
