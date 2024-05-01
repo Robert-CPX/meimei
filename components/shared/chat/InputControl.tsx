@@ -62,7 +62,7 @@ const InputControl = ({
           className="chat-textarea focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
         />
         <Button disabled={!prompt.trim()} className="absolute bottom-1 right-0">
-          <Image src="/assets/icons/send.svg" alt="send" width={24} height={24} />
+          <Image src="/assets/icons/send.svg" alt="send" width={24} height={24} priority={false} />
         </Button>
       </div>
     </form>

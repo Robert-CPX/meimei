@@ -5,7 +5,6 @@ import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions'
 import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
-  console.log('Webhook received')
   const CLERK_WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET
 
   if (!CLERK_WEBHOOK_SECRET) {
@@ -42,7 +41,6 @@ export async function POST(req: Request) {
       "svix-signature": svix_signature,
     }) as WebhookEvent
   } catch (err) {
-    console.error('Error verifying webhook:', err);
     return new Response('Error occured', {
       status: 400
     })
@@ -50,10 +48,8 @@ export async function POST(req: Request) {
 
   // Get the type of the event
   const eventType = evt.type;
-  console.log('eventType:', eventType)
   if (eventType === 'user.created') {
     const { id, email_addresses, image_url, username } = evt.data;
-    console.log('User created:', id, email_addresses, image_url, username)
     const mongoUser = await createUser({
       clerkId: id,
       email: email_addresses[0].email_address,
