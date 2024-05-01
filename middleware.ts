@@ -14,7 +14,6 @@ export default authMiddleware({
     '/welcome',
   ],
   ignoredRoutes: [
-    '/api/inworld',
     '/api/webhooks',
   ],
 });
