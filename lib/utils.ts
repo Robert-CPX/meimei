@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { VRM_ANIMATION } from "@/constants/constants"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -58,3 +59,9 @@ export const generateTimeOptions = (): number[] => {
   }
   return list;
 };
+
+export function getRandomAnimationUrl(): string {
+  const keys = Object.keys(VRM_ANIMATION);
+  const randomKey = keys[Math.floor(Math.random() * keys.length)];
+  return VRM_ANIMATION[randomKey as keyof typeof VRM_ANIMATION];
+}

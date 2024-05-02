@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm';
@@ -10,9 +10,22 @@ import {
   VRMAnimationLoaderPlugin,
   VRMLookAtQuaternionProxy,
 } from '@pixiv/three-vrm-animation';
+import { VRM_ANIMATION } from '@/constants/constants';
+import { useMeimei } from '@/context/MeimeiProvider';
+import { getRandomAnimationUrl } from '@/lib/utils';
 
 const Meimei = () => {
+
   const mount = useRef<HTMLDivElement>(null);
+  const [meimeiAnimation, setMeimeiAnimation] = useState(VRM_ANIMATION.DEFAULT)
+  const { emotion } = useMeimei();
+
+  useEffect(() => {
+    const randomAnimation = getRandomAnimationUrl();
+    console.log(randomAnimation);
+    setMeimeiAnimation(randomAnimation);
+    // emotion?.behavior && setMeimeiAnimation(VRM_ANIMATION[emotion.behavior]);
+  }, [emotion]);
 
   useEffect(() => {
     if (!mount.current) return;
@@ -55,7 +68,7 @@ const Meimei = () => {
       VRMUtils.removeUnnecessaryVertices(vrm.scene);
       VRMUtils.removeUnnecessaryJoints(vrm.scene);
 
-      vrm.scene.traverse((obj) => {
+      vrm.scene.traverse((obj: THREE.Object3D) => {
         obj.frustumCulled = false;
       });
 
@@ -65,7 +78,7 @@ const Meimei = () => {
 
       scene.add(vrm.scene);
 
-      const gltfVrma = await loader.loadAsync("/vrm/vrma/greet1.vrma");
+      const gltfVrma = await loader.loadAsync(meimeiAnimation);
       const vrmAnimation = gltfVrma.userData.vrmAnimations[0];
       const clip = createVRMAnimationClip(vrmAnimation, vrm);
       const mixer = new THREE.AnimationMixer(vrm.scene);
@@ -96,10 +109,11 @@ const Meimei = () => {
 
     return () => {
       window.removeEventListener('resize', onResize);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       mount.current?.removeChild(renderer.domElement);
       renderer.dispose();
     };
-  }, []);
+  }, [meimeiAnimation]);
 
   return <div ref={mount} />;
 };

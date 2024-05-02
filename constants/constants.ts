@@ -1,3 +1,5 @@
+import { MeimeiBehavior } from "."
+
 export const meimei_0 = {
   label: "meimei_0",
   src: "/assets/videos/meimei_0.mp4"
@@ -21,8 +23,28 @@ export const TabData = [
 export const COUNTDOWN_ID = 'timer_countdown_id';
 export const COUNTDOWN_REMAINING_SECONDS = 'timer_countdown_remaining_seconds';
 
-// https://docs.inworld.ai/docs/tutorial-basics/personality-emotion/
-export type MEIMEI_BEHAVIOR = "AFFECTION" | "ANGER" | "BELLIGERENCE" | "CONTEMPT" | "CRITICISM" | "DEFENSIVENESS" | "DISGUST" | "DOMINEERING" | "HUMOR" | "INTEREST" | "JOY" | "SADNESS" | "STONEWALLING" | "SURPRISE" | "TENSE" | "TENSION" | "VALIDATION" | "WHINING"
+export const VRM_ANIMATION = {
+  DEFAULT: "/vrm/vrma/greet1.vrma",
+  "ANGER": "/vrm/vrma/boxing1.vrma",
+  "AFFECTION": "/vrm/vrma/greet1.vrma",
+  "JOY": "/vrm/vrma/thankful1.vrma",
+  "INTEREST": "/vrm/vrma/idle2.vrma",
+  "CONTEMPT": "/vrm/vrma/idle1.vrma",
+
+  "VALIDATION": "/vrm/vrma/greet1.vrma",
+  "WHINING": "/vrm/vrma/boxing1.vrma",
+  "CRITICISM": "/vrm/vrma/greet1.vrma",
+  "DEFENSIVENESS": "/vrm/vrma/thankful1.vrma",
+  "DISGUST": "/vrm/vrma/idle1.vrma",
+  "DOMINEERING": "/vrm/vrma/idle2.vrma",
+  "HUMOR": "/vrm/vrma/boxing1.vrma",
+  "SADNESS": "/vrm/vrma/greet1.vrma",
+  "STONEWALLING": "/vrm/vrma/idle2.vrma",
+  "SURPRISE": "/vrm/vrma/idle1.vrma",
+  "TENSE": "/vrm/vrma/boxing1.vrma",
+  "TENSION": "/vrm/vrma/thankful1.vrma",
+  "BELLIGERENCE": "/vrm/vrma/greet1.vrma"
+}
 
 export const MEIMEI_EMOJI = {
   "AFFECTION": "🥰",

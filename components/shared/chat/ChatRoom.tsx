@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import InputControl from "./InputControl";
 import ChatHistoryWidget from "./ChatHistoryWidget";
-import { ChatResponse } from "@/constants";
+import { ChatResponse, MeimeiBehavior } from "@/constants";
 import { useMeimei } from "@/context/MeimeiProvider";
 import SingleChatBox from "./SingleChatBox";
 import MiniChatBubble from "./MiniChatBubble";
 import { useAuth, useClerk } from "@clerk/nextjs";
 import { useMeimeiTime } from "@/context/MeimeiTimeProvider";
-import { MEIMEI_EMOJI, MEIMEI_BEHAVIOR } from "@/constants/constants";
+import { MEIMEI_EMOJI } from "@/constants/constants";
 
 const systemPrompt = {
   role: "system",
@@ -20,8 +20,8 @@ const systemPrompt = {
 const ChatRoom = () => {
   const [chatHistory, setChatHistory] = useState<ChatResponse[]>([systemPrompt])
   const [response, setResponse] = useState<ChatResponse | null>(null)// a response from AI
-  const [prompt, setPrompt] = useState("");
-  const { mode, reaction, setReaction } = useMeimei()
+  const [prompt, setPrompt] = useState("")
+  const { mode, setEmotion } = useMeimei()
   const [isSneaking, setIsSneaking] = useState(false) // a flag to show/hide ChatHistory on desktop
   const { userId } = useAuth()
   const { isRunning } = useMeimeiTime()
@@ -47,8 +47,8 @@ const ChatRoom = () => {
         }),
       })
       const data = await response.json()
-      const behavior = data.emotion.behavior as MEIMEI_BEHAVIOR
-      setResponse({ role: "system", content: data.reply + MEIMEI_EMOJI[behavior] })
+      const behavior = data.emotion.behavior as MeimeiBehavior
+      setResponse({ role: "system", content: data.reply + MEIMEI_EMOJI[behavior], emotion: data.emotion })
       // save sessionId into local storage
       localStorage.setItem('inworld-sessionId', data.sessionId)
     } catch (error) {
@@ -60,11 +60,13 @@ const ChatRoom = () => {
     setIsSneaking(!isSneaking)
   }
 
-  // update meimei reaction and chat history when AI response is received
+  // update meimei behavior and chat history when AI response is received
   useEffect(() => {
     if (!response) return
     setChatHistory((prev) => [...prev, response])
-    setReaction(`${reaction === "peaceful" ? 'dancing' : 'peaceful'}`)
+    if (response.emotion) {
+      setEmotion(response.emotion)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [response])
 
