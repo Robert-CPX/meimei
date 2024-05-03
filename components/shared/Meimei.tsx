@@ -1,121 +1,119 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import {
-  createVRMAnimationClip,
-  VRMAnimationLoaderPlugin,
-  VRMLookAtQuaternionProxy,
-} from '@pixiv/three-vrm-animation';
-import { VRM_ANIMATION } from '@/constants/constants';
-import { useMeimei } from '@/context/MeimeiProvider';
-import { getRandomAnimationUrl } from '@/lib/utils';
+import { VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm';
+import { createVRMAnimationClip, VRMAnimationLoaderPlugin, VRMLookAtQuaternionProxy } from '@pixiv/three-vrm-animation';
 
-const Meimei = () => {
-
+const ThreeScene: React.FC = () => {
   const mount = useRef<HTMLDivElement>(null);
-  const [meimeiAnimation, setMeimeiAnimation] = useState(VRM_ANIMATION.DEFAULT)
-  const { emotion } = useMeimei();
+  const mixer = useRef<THREE.AnimationMixer | null>(null);
+  const vrmRef = useRef<any>(null); // Use a more specific type for your VRM model
+  const gltfLoaderRef = useRef<GLTFLoader>(new GLTFLoader());  // Ref for GLTFLoader
 
   useEffect(() => {
-    const randomAnimation = getRandomAnimationUrl();
-    console.log(randomAnimation);
-    setMeimeiAnimation(randomAnimation);
-    // emotion?.behavior && setMeimeiAnimation(VRM_ANIMATION[emotion.behavior]);
-  }, [emotion]);
-
-  useEffect(() => {
-    if (!mount.current) return;
-
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    const renderer = new THREE.WebGLRenderer();
+
+    const loader = new THREE.TextureLoader();
+    loader.load('emi/background.jpg', function (texture) {
+      texture.minFilter = THREE.LinearFilter;
+      scene.background = texture;
+    });
+
+    const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    mount.current.appendChild(renderer.domElement);
+    mount.current?.appendChild(renderer.domElement);
     camera.position.set(0, 1.3, 1);
     renderer.setClearColor(0x99ddff);
-
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.target.set(0, 1, 0);
+    controls.target.set(0, 1.3, 0);
     controls.update();
 
-    const light = new THREE.AmbientLight(0xffffff);
+    const light = new THREE.AmbientLight(0xffffff, 2); // soft white light
     scene.add(light);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 3);
+    const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
     directionalLight.position.set(0, 5, 3);
     scene.add(directionalLight);
 
-    const gridHelper = new THREE.GridHelper(30, 100);
-    scene.add(gridHelper);
+    gltfLoaderRef.current.register((parser) => new VRMLoaderPlugin(parser));
+    gltfLoaderRef.current.register((parser) => new VRMAnimationLoaderPlugin(parser));
 
-    const loader = new GLTFLoader();
-    loader.register((parser) => new VRMLoaderPlugin(parser));
-    loader.register((parser) => new VRMAnimationLoaderPlugin(parser));
-
-    const loadModels = async () => {
-      const gltfVrm = await loader.loadAsync("/vrm/emi.vrm");
+    const init = async () => {
+      const gltfVrm = await gltfLoaderRef.current.loadAsync('emi/emi.vrm');
       const vrm = gltfVrm.userData.vrm;
+      vrmRef.current = vrm; // Store the VRM for future reference
       VRMUtils.rotateVRM0(vrm);
       VRMUtils.removeUnnecessaryVertices(vrm.scene);
       VRMUtils.removeUnnecessaryJoints(vrm.scene);
-
-      vrm.scene.traverse((obj: THREE.Object3D) => {
-        obj.frustumCulled = false;
-      });
-
+      vrm.scene.traverse((obj: THREE.Object3D) => obj.frustumCulled = false);
       const lookAtQuatProxy = new VRMLookAtQuaternionProxy(vrm.lookAt);
-      lookAtQuatProxy.name = "lookAtQuaternionProxy";
+      lookAtQuatProxy.name = 'lookAtQuaternionProxy';
       vrm.scene.add(lookAtQuatProxy);
-
+      const lookAtTarget = new THREE.Object3D();
+      camera.add(lookAtTarget);
       scene.add(vrm.scene);
+      vrm.lookAt.target = lookAtTarget;
 
-      const gltfVrma = await loader.loadAsync(meimeiAnimation);
-      const vrmAnimation = gltfVrma.userData.vrmAnimations[0];
-      const clip = createVRMAnimationClip(vrmAnimation, vrm);
-      const mixer = new THREE.AnimationMixer(vrm.scene);
-      mixer.clipAction(clip).play();
-
+      mixer.current = new THREE.AnimationMixer(vrm.scene);
       const clock = new THREE.Clock();
+
+      // Load and play the intro animation immediately after the VRM is loaded
+      const gltfVrma = await gltfLoaderRef.current.loadAsync('emi/emotions/Intro.vrma');
+      const vrmAnimation = gltfVrma.userData.vrmAnimations[0];
+      const introClip = createVRMAnimationClip(vrmAnimation, vrm);
+      const action = mixer.current.clipAction(introClip);
+      action.play();
 
       const animate = () => {
         requestAnimationFrame(animate);
         const deltaTime = clock.getDelta();
-        mixer.update(deltaTime);
+        mixer.current?.update(deltaTime);
         vrm.update(deltaTime);
         renderer.render(scene, camera);
       };
-
       animate();
     };
 
-    loadModels();
+    init();
 
-    const onResize = () => {
+    const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     };
 
-    window.addEventListener('resize', onResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener('resize', handleResize);
       // eslint-disable-next-line react-hooks/exhaustive-deps
       mount.current?.removeChild(renderer.domElement);
-      renderer.dispose();
     };
-  }, [meimeiAnimation]);
+  }, []);
+
+  const loadAndPlayAnimation = async (filename: string) => {
+    const basePath = 'emi/emotions/';
+    const fullPath = basePath + filename;
+
+    try {
+      const gltfVrma = await gltfLoaderRef.current.loadAsync(fullPath);
+      const vrmAnimation = gltfVrma.userData.vrmAnimations[0];
+      const clip = createVRMAnimationClip(vrmAnimation, vrmRef.current);
+
+      if (mixer.current) {
+        const action = mixer.current.clipAction(clip);
+        action.play();
+      }
+    } catch (error) {
+      console.error('Failed to load or play the animation:', error);
+    }
+  };
 
   return <div ref={mount} />;
 };
 
-export default Meimei;
+export default ThreeScene;
