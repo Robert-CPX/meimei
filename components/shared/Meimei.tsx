@@ -6,12 +6,21 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm';
 import { createVRMAnimationClip, VRMAnimationLoaderPlugin, VRMLookAtQuaternionProxy } from '@pixiv/three-vrm-animation';
+import { useMeimei } from '@/context/MeimeiProvider';
+import { getRandomAnimation } from '@/lib/utils';
 
-const ThreeScene: React.FC = () => {
+const Meimei = () => {
   const mount = useRef<HTMLDivElement>(null);
   const mixer = useRef<THREE.AnimationMixer | null>(null);
   const vrmRef = useRef<any>(null); // Use a more specific type for your VRM model
   const gltfLoaderRef = useRef<GLTFLoader>(new GLTFLoader());  // Ref for GLTFLoader
+  const { emotion } = useMeimei();
+
+  useEffect(() => {
+    const animation = getRandomAnimation();
+    console.log('Animation:', animation);
+    loadAndPlayAnimation(animation);
+  }, [emotion]);
 
   useEffect(() => {
     const scene = new THREE.Scene();
@@ -116,4 +125,4 @@ const ThreeScene: React.FC = () => {
   return <div ref={mount} />;
 };
 
-export default ThreeScene;
+export default Meimei;

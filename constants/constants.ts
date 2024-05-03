@@ -1,5 +1,3 @@
-import { MeimeiBehavior } from "."
-
 export const meimei_0 = {
   label: "meimei_0",
   src: "/assets/videos/meimei_0.mp4"
@@ -23,30 +21,29 @@ export const TabData = [
 export const COUNTDOWN_ID = 'timer_countdown_id';
 export const COUNTDOWN_REMAINING_SECONDS = 'timer_countdown_remaining_seconds';
 
-export const VRM_ANIMATION = {
-  DEFAULT: "/vrm/vrma/greet1.vrma",
-  "ANGER": "/vrm/vrma/boxing1.vrma",
-  "AFFECTION": "/vrm/vrma/greet1.vrma",
-  "JOY": "/vrm/vrma/thankful1.vrma",
-  "INTEREST": "/vrm/vrma/idle2.vrma",
-  "CONTEMPT": "/vrm/vrma/idle1.vrma",
-
-  "VALIDATION": "/vrm/vrma/greet1.vrma",
-  "WHINING": "/vrm/vrma/boxing1.vrma",
-  "CRITICISM": "/vrm/vrma/greet1.vrma",
-  "DEFENSIVENESS": "/vrm/vrma/thankful1.vrma",
-  "DISGUST": "/vrm/vrma/idle1.vrma",
-  "DOMINEERING": "/vrm/vrma/idle2.vrma",
-  "HUMOR": "/vrm/vrma/boxing1.vrma",
-  "SADNESS": "/vrm/vrma/greet1.vrma",
-  "STONEWALLING": "/vrm/vrma/idle2.vrma",
-  "SURPRISE": "/vrm/vrma/idle1.vrma",
-  "TENSE": "/vrm/vrma/boxing1.vrma",
-  "TENSION": "/vrm/vrma/thankful1.vrma",
-  "BELLIGERENCE": "/vrm/vrma/greet1.vrma"
+export const MEIMEI_ANIMATIONS = {
+  DEFAULT: "Intro.vrma",
+  "ANGER": "angry.vrma",
+  "AFFECTION": "bow.vrma",
+  "JOY": "happy.vrma",
+  "INTEREST": "chestpat.vrma",
+  "CONTEMPT": "boxing1.vrma",
+  "VALIDATION": "idle1.vrma",
+  "WHINING": "idle2.vrma",
+  "CRITICISM": "sad.vrma",
+  "DEFENSIVENESS": "sitpoint.vrma",
+  "DISGUST": "talk.vrma",
+  "DOMINEERING": "thankful1.vrma",
+  "HUMOR": "VRMA_01.vrma",
+  "SADNESS": "VRMA_02.vrma",
+  "STONEWALLING": "VRMA_03.vrma",
+  "SURPRISE": "VRMA_04.vrma",
+  "TENSE": "VRMA_05.vrma",
+  "TENSION": "VRMA_06.vrma",
+  "BELLIGERENCE": "VRMA_07.vrma"
 }
 
-export const MEIMEI_EMOJI = {
+export const INWORLD_EMOJI = {
   "AFFECTION": "🥰",
   "ANGER": "😡",
   "BELLIGERENCE": "🤬",
@@ -66,6 +63,21 @@ export const MEIMEI_EMOJI = {
   "VALIDATION": "👍",
   "WHINING": "😩"
 }
+
+export const MockEmotionList = [
+  { "behavior": "AFFECTION", "strength": "STRONG" },
+  { "behavior": "ANGER", "strength": "STRONG" },
+  { "behavior": "BELLIGERENCE", "strength": "STRONG" },
+  { "behavior": "CRITICISM", "strength": "STRONG" },
+  { "behavior": "DEFENSIVENESS", "strength": "STRONG" },
+  { "behavior": "HUMOR", "strength": "STRONG" },
+  { "behavior": "INTEREST", "strength": "STRONG" },
+  { "behavior": "JOY", "strength": "STRONG" },
+  { "behavior": "SADNESS", "strength": "STRONG" },
+  { "behavior": "TENSION", "strength": "STRONG" },
+  { "behavior": "VALIDATION", "strength": "STRONG" },
+  { "behavior": "WHINING", "strength": "STRONG" }
+]
 
 export const MockChatHistory = [
   {

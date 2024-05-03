@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { VRM_ANIMATION } from "@/constants/constants"
+import { MEIMEI_ANIMATIONS } from "@/constants/constants"
+import { MockEmotionList } from "@/constants/constants"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -60,8 +61,12 @@ export const generateTimeOptions = (): number[] => {
   return list;
 };
 
-export function getRandomAnimationUrl(): string {
-  const keys = Object.keys(VRM_ANIMATION);
+export function getRandomAnimation(): string {
+  const keys = Object.keys(MEIMEI_ANIMATIONS);
   const randomKey = keys[Math.floor(Math.random() * keys.length)];
-  return VRM_ANIMATION[randomKey as keyof typeof VRM_ANIMATION];
+  return MEIMEI_ANIMATIONS[randomKey as keyof typeof MEIMEI_ANIMATIONS];
+}
+
+export function getRandomEmotion(): any {
+  return MockEmotionList[Math.floor(Math.random() * MockEmotionList.length)];
 }

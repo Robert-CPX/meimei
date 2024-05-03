@@ -9,7 +9,7 @@ import SingleChatBox from "./SingleChatBox";
 import MiniChatBubble from "./MiniChatBubble";
 import { useAuth, useClerk } from "@clerk/nextjs";
 import { useMeimeiTime } from "@/context/MeimeiTimeProvider";
-import { MEIMEI_EMOJI } from "@/constants/constants";
+import { INWORLD_EMOJI } from "@/constants/constants";
 
 const systemPrompt = {
   role: "system",
@@ -48,7 +48,7 @@ const ChatRoom = () => {
       })
       const data = await response.json()
       const behavior = data.emotion.behavior as MeimeiBehavior
-      setResponse({ role: "system", content: data.reply + MEIMEI_EMOJI[behavior], emotion: data.emotion })
+      setResponse({ role: "system", content: data.reply + INWORLD_EMOJI[behavior], emotion: data.emotion })
       // save sessionId into local storage
       localStorage.setItem('inworld-sessionId', data.sessionId)
     } catch (error) {
