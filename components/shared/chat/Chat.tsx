@@ -18,10 +18,10 @@ import { useMeimei } from '@/context/MeimeiProvider';
 const Chat = () => {
   const [connection, setConnection] = useState<InworldConnectionService>();
   const [chatHistory, setChatHistory] = useState<HistoryItem[]>([]);
+  const [lastMessages, setLastMessages] = useState<string>("");
   const [characters, setCharacters] = useState<Character[]>([]);
   const [savedDialog, setSavedDialog] = useState<string>("");
   const [emotionEvent, setEmotionEvent] = useState<EmotionEvent>();
-  const [avatars, setAvatars] = useState<string[]>([]);
   const [emotions, setEmotions] = useState<EmotionsMap>({});
   const { setEmotion: setMeimeiEmotion } = useMeimei();
 
@@ -63,6 +63,9 @@ const Chat = () => {
               [inworldPacket.packetId.interactionId]: inworldPacket.emotions,
             }));
           }
+          if (inworldPacket.isText()) {
+            setLastMessages(inworldPacket.text.text);
+          }
         },
       });
       const characters = await service.connection.getCharacters();
@@ -74,7 +77,6 @@ const Chat = () => {
 
           return rpmImageUri || avatarImg || '';
         });
-        setAvatars(avatars);
       } else {
         console.error('Character(s) not found. Was them added?:');
         return;
@@ -105,6 +107,7 @@ const Chat = () => {
           chatHistory={chatHistory}
           connection={connection!}
           emotions={emotions}
+          lastMessages={lastMessages}
         />
       ) : (
         'Loading...'

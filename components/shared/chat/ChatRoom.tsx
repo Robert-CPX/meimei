@@ -11,7 +11,6 @@ import ChatHistoryWidget from "./ChatHistoryWidget";
 import { useMeimei } from "@/context/MeimeiProvider";
 import SingleChatBox from "./SingleChatBox";
 import MiniChatBubble from "./MiniChatBubble";
-import { useAuth, useClerk } from "@clerk/nextjs";
 import { useMeimeiTime } from "@/context/MeimeiTimeProvider";
 import { EmotionsMap } from "@/constants";
 
@@ -20,16 +19,15 @@ interface ChatRoomProps {
   chatHistory: HistoryItem[];
   connection: InworldConnectionService;
   emotions: EmotionsMap;
+  lastMessages: string;
 }
 
 const ChatRoom = (props: ChatRoomProps) => {
-  const { characters, chatHistory, connection } = props;
+  const { characters, chatHistory, connection, lastMessages } = props;
   const [text, setText] = useState("");
   const [isInteractionEnd, setIsInteractionEnd] = useState<boolean>(false);
-  const { mode, setEmotion } = useMeimei()
+  const { mode } = useMeimei()
   const [isSneaking, setIsSneaking] = useState(false) // a flag to show/hide ChatHistory on desktop
-  const { userId } = useAuth()
-  const { session } = useClerk()
   const { isRunning } = useMeimeiTime()
 
   const handleTextSend = useCallback((input: string) => {
@@ -65,7 +63,7 @@ const ChatRoom = (props: ChatRoomProps) => {
         </section>
       ) : (
         <div className="flex w-full flex-col items-end gap-3 max-md:hidden">
-          <SingleChatBox text={"latest response"} />
+          <SingleChatBox text={lastMessages} />
           <MiniChatBubble handleAction={handleUserClickMiniChatBubble} />
         </div>
       )}
