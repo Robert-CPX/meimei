@@ -36,6 +36,7 @@ export class InworldService {
               hostname: Config.CONNECTION_HOSTNAME,
               ssl: Config.CONNECTION_SSL,
             },
+            disconnectTimeout: Config.DISCONNECT_TIMEOUT,
           },
         }),
         capabilities: props.capabilities,
