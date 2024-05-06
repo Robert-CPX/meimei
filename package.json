@@ -13,6 +13,7 @@
     "@gltf-transform/extensions": "^3.10.1",
     "@hookform/resolvers": "^3.3.4",
     "@inworld/nodejs-sdk": "^1.11.0",
+    "@inworld/web-core": "^2.5.0",
     "@pixiv/three-vrm": "^2.1.1",
     "@pixiv/three-vrm-animation": "^2.1.1",
     "@radix-ui/react-dropdown-menu": "^2.0.6",

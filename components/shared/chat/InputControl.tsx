@@ -6,35 +6,35 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
 type InputControlProps = {
-  prompt: string;
-  setPrompt: (prompt: string) => void;
-  handleInput: (input: string) => void;
+  text: string;
+  setText: (text: string) => void;
+  handleTextSend: (text: string) => void;
 }
 
 const InputControl = ({
-  prompt,
-  setPrompt,
-  handleInput
+  text,
+  setText,
+  handleTextSend
 }: InputControlProps) => {
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    handleInput(prompt)
-    setPrompt("")
+    if (!text.trim()) return
+    handleTextSend(text)
+    setText("")
   }
 
   const onEnter = useCallback((event: KeyboardEvent) => {
-    let trimmedPrompt = prompt.trim()
+    let trimmedText = text.trim()
+    if (!trimmedText) return
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault()
-      if (!trimmedPrompt) return
-      handleInput(trimmedPrompt)
-      setPrompt("")
+      handleTextSend(trimmedText)
+      setText("")
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [prompt])
+  }, [text, setText, handleTextSend])
 
   useEffect(() => {
     const textarea = textareaRef.current
@@ -46,22 +46,21 @@ const InputControl = ({
     return () => {
       textarea.removeEventListener("keydown", onEnter)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [prompt])
+  }, [text, onEnter])
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col">
-      <span className={`text-500-10-12 mb-1 mr-3 self-end ${prompt.length >= 100 ? 'text-error' : 'text-[hsla(0,0%,82%,1)]'}`}>{`${prompt.length}/100`}</span>
+      <span className={`text-500-10-12 mb-1 mr-3 self-end ${text.length >= 100 ? 'text-error' : 'text-[hsla(0,0%,82%,1)]'}`}>{`${text.length}/100`}</span>
       <div className="relative grow">
         <Textarea
           ref={textareaRef}
           maxLength={100}
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
           placeholder="Tell me about you today!"
           className="chat-textarea focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
         />
-        <Button disabled={!prompt.trim()} className="absolute bottom-1 right-0">
+        <Button disabled={!text.trim()} className="absolute bottom-1 right-0">
           <Image src="/assets/icons/send.svg" alt="send" width={24} height={24} priority={false} />
         </Button>
       </div>

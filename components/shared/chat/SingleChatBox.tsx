@@ -1,12 +1,12 @@
 // Desc: This is a single chat box component that will be used on desktop when user switch to Focus mode. It will show the latest message from the chat history. It will be used in ChatRoom.tsx.
 type SingleChatBoxProps = {
-  latestMessage: string
+  text: string
 }
 
-const SingleChatBox = ({ latestMessage }: SingleChatBoxProps) => {
+const SingleChatBox = ({ text }: SingleChatBoxProps) => {
   return (
     <div className="flex h-[60px] items-center justify-start self-stretch rounded-[20px] bg-dark/80 px-[20px] py-3">
-      <p className="text-[0.875rem] font-normal leading-[17.5px] text-light">{latestMessage}</p>
+      <p className="text-[0.875rem] font-normal leading-[17.5px] text-light">{text}</p>
     </div>
   )
 }

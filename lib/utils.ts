@@ -1,7 +1,8 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { MEIMEI_ANIMATIONS } from "@/constants/constants"
+import { EMOJIS, MEIMEI_ANIMATIONS } from "@/constants/constants"
 import { MockEmotionList } from "@/constants/constants"
+import { DialogPhrase, EmotionBehavior, EmotionEvent } from "@inworld/web-core"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -67,6 +68,33 @@ export function getRandomAnimation(): string {
   return MEIMEI_ANIMATIONS[randomKey as keyof typeof MEIMEI_ANIMATIONS];
 }
 
+export function getAnimation(emotion: EmotionEvent): string {
+  const code = emotion.behavior.code;
+  return MEIMEI_ANIMATIONS[code];
+}
+
 export function getRandomEmotion(): any {
   return MockEmotionList[Math.floor(Math.random() * MockEmotionList.length)];
+}
+
+export const JSONToPreviousDialog = (json: string) => {
+  const data = json ? JSON.parse(json) : [];
+
+  return data.map(({ talker, phrase }: { talker: string; phrase: string }) => ({
+    talker,
+    phrase,
+  })) as DialogPhrase[];
+};
+
+export const dateWithMilliseconds = (date: Date) =>
+  `${date.toLocaleString()}.${date.getMilliseconds()}`;
+
+export function getEmoji(behavior: EmotionBehavior): string | null {
+  const emoji = EMOJIS[behavior.code];
+
+  if (!emoji?.length) return null;
+
+  return emoji.length < 2
+    ? emoji[0]
+    : emoji[Math.floor(Math.random() * emoji.length)];
 }

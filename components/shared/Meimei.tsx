@@ -7,7 +7,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm';
 import { createVRMAnimationClip, VRMAnimationLoaderPlugin, VRMLookAtQuaternionProxy } from '@pixiv/three-vrm-animation';
 import { useMeimei } from '@/context/MeimeiProvider';
-import { getRandomAnimation } from '@/lib/utils';
+import { getAnimation } from '@/lib/utils';
 
 const Meimei = () => {
   const mount = useRef<HTMLDivElement>(null);
@@ -17,8 +17,8 @@ const Meimei = () => {
   const { emotion } = useMeimei();
 
   useEffect(() => {
-    const animation = getRandomAnimation();
-    console.log('Animation:', animation);
+    if (!emotion) return;
+    const animation = getAnimation(emotion);
     loadAndPlayAnimation(animation);
   }, [emotion]);
 

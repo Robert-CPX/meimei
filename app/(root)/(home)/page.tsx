@@ -1,7 +1,7 @@
 import Meimei from "@/components/shared/Meimei"
 import ModeTabs from "@/components/shared/ModeTabs"
 import BrandMenu from "@/components/shared/brand-menu"
-import { ChatRoom, ChatMobileBackground, ChatHistoryMobile } from "@/components/shared/chat"
+import { Chat, ChatMobileBackground, ChatHistoryMobile } from "@/components/shared/chat"
 import ActionMenu from "@/components/shared/ActionMenu"
 import { TimeEditor, TimeSelector } from "@/components/shared/timer"
 import { redirect } from 'next/navigation'
@@ -34,7 +34,7 @@ const Home = () => {
         </section>
         {/* ChatRoom has threen variants, two for desktop and one for mobile */}
         <section className="flex basis-[23%] max-md:mb-4 max-md:max-h-[45%]">
-          <ChatRoom />
+          <Chat />
         </section>
         {/* ChatMobileBackground is absolute positioned background for mobile chat */}
         <ChatMobileBackground />

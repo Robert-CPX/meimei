@@ -39,9 +39,17 @@ const config = {
         lexendDeca: ["var(--font-lexend_deca)"],
         lemon: ["var(--font-lemon)"],
       },
+      keyframes: {
+        dot: {
+          '0%': { transform: 'translateY(0)' },
+          '30%': { transform: 'translateY(-4px)' },
+          '40%': { transform: 'translateY(0)' },
+        }
+      },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "dot": '1.4s ease-in infinite dot',
       },
     },
   },

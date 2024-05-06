@@ -1,8 +1,8 @@
-import ChatRoom from "./ChatRoom";
+import Chat from "./Chat";
 import ChatMobileBackground from "./ChatMobileBackground";
 import ChatHistoryMobile from "./ChatHistoryMobile";
 export {
-  ChatRoom,
+  Chat,
   ChatMobileBackground,
   ChatHistoryMobile
 };

@@ -1,8 +1,9 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+'use server'
+
 import { InworldClient } from '@inworld/nodejs-sdk';
 import { handleError } from '@/lib/utils';
 
-const generateSessionToken = async (req: NextApiRequest, res: NextApiResponse) => {
+const generateSessionToken = async () => {
   // Environment variables
   const {
     INWORLD_API_KEY,
@@ -36,7 +37,7 @@ const generateSessionToken = async (req: NextApiRequest, res: NextApiResponse) =
   // Generate session token
   try {
     const token = await client.generateSessionToken();
-    return res.status(200).json(token);
+    return JSON.stringify(token);
   } catch (error: any) {
     console.error("Error generating session token:", error.message);
     return handleError(error);
