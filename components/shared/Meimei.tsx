@@ -38,10 +38,10 @@ const Meimei = () => {
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     mountRef.current?.appendChild(renderer.domElement);
-    camera.position.set(0, 1.3, 1);
+    camera.position.set(0, 1.5, 1.4);
     renderer.setClearColor(0x99ddff);
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.target.set(0, 0.9, 0);
+    controls.target.set(0, 1, 0);
     controls.update();
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 2); // soft white light
