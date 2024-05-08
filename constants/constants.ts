@@ -21,6 +21,16 @@ export const TabData = [
 export const COUNTDOWN_ID = 'timer_countdown_id';
 export const COUNTDOWN_REMAINING_SECONDS = 'timer_countdown_remaining_seconds';
 
+export const EMI_RESOURCES = {
+  character: 'emi/emi.vrm',
+  background: 'emi/background.jpg',
+  pencil: 'emi/objects/pencil.glb',
+  chair: 'emi/objects/chair.glb',
+  desk: 'emi/objects/desk.glb',
+  tableTop: 'emi/objects/table-top.glb',
+  emotionPath: 'emi/emotions/',
+}
+
 export const MEIMEI_ANIMATIONS: { [key: string]: string } = {
   DEFAULT: "idle.vrma",
   INTRO: "Intro.vrma",

@@ -8,6 +8,7 @@ import { VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm';
 import { createVRMAnimationClip, VRMAnimationLoaderPlugin, VRMLookAtQuaternionProxy } from '@pixiv/three-vrm-animation';
 import { useMeimei } from '@/context/MeimeiProvider';
 import { getAnimation } from '@/lib/utils';
+import { EMI_RESOURCES, MEIMEI_ANIMATIONS } from '@/constants/constants';
 
 const Meimei = () => {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -28,7 +29,7 @@ const Meimei = () => {
 
     // load background image
     const loader = new THREE.TextureLoader();
-    loader.load('emi/background.jpg', function (texture) {
+    loader.load(EMI_RESOURCES.background, function (texture) {
       texture.minFilter = THREE.LinearFilter;
       scene.background = texture;
     });
@@ -54,7 +55,7 @@ const Meimei = () => {
     gltfLoaderRef.current.register((parser) => new VRMAnimationLoaderPlugin(parser));
 
     const initVRMScene = async () => {
-      const gltfVrm = await gltfLoaderRef.current.loadAsync('emi/emi.vrm');
+      const gltfVrm = await gltfLoaderRef.current.loadAsync(EMI_RESOURCES.character);
       const vrm = gltfVrm.userData.vrm;
       vrmRef.current = vrm; // Store the VRM for future reference
       VRMUtils.rotateVRM0(vrm);
@@ -73,14 +74,14 @@ const Meimei = () => {
       const clock = new THREE.Clock();
 
       // Load and play the intro animation immediately after the VRM is loaded
-      const gltfVrma = await gltfLoaderRef.current.loadAsync('emi/emotions/Intro.vrma');
+      const gltfVrma = await gltfLoaderRef.current.loadAsync(EMI_RESOURCES.emotionPath + MEIMEI_ANIMATIONS.DEFAULT);
       const vrmAnimation = gltfVrma.userData.vrmAnimations[0];
       const introClip = createVRMAnimationClip(vrmAnimation, vrm);
       mainAnimationRef.current = mixerRef.current.clipAction(introClip);
       mainAnimationRef.current.play();
 
       //load pencil
-      const gltfPencil = await gltfLoaderRef.current.loadAsync('emi/objects/pencil.glb');
+      const gltfPencil = await gltfLoaderRef.current.loadAsync(EMI_RESOURCES.pencil);
       const pencil = gltfPencil.scene;
       scene.add(pencil);
       const boneToAttachTo = vrm.humanoid.getBoneNode('rightThumbDistal');
@@ -92,15 +93,15 @@ const Meimei = () => {
       boneToAttachTo.updateMatrixWorld(true);
 
       // load chair
-      const gltfChair = await gltfLoaderRef.current.loadAsync('emi/objects/chair.glb');
+      const gltfChair = await gltfLoaderRef.current.loadAsync(EMI_RESOURCES.chair);
       scene.add(gltfChair.scene);
 
       // load desk
-      const gltfDesk = await gltfLoaderRef.current.loadAsync('emi/objects/desk.glb');
+      const gltfDesk = await gltfLoaderRef.current.loadAsync(EMI_RESOURCES.desk);
       scene.add(gltfDesk.scene);
 
       // load table top items
-      const gltfTableTopItems = await gltfLoaderRef.current.loadAsync('emi/objects/table-top.glb');
+      const gltfTableTopItems = await gltfLoaderRef.current.loadAsync(EMI_RESOURCES.tableTop);
       scene.add(gltfTableTopItems.scene);
 
       const animate = () => {
@@ -133,8 +134,7 @@ const Meimei = () => {
   }, []);
 
   const loadAndPlayAnimation = async (filename: string) => {
-    const basePath = 'emi/emotions/';
-    const fullPath = basePath + filename;
+    const fullPath = EMI_RESOURCES.emotionPath + filename;
 
     try {
       const gltfVrma = await gltfLoaderRef.current.loadAsync(fullPath);
