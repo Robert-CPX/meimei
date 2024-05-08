@@ -108,7 +108,9 @@ const Meimei = () => {
         const deltaTime = clock.getDelta();
         mixerRef.current?.update(deltaTime);
         vrm.update(deltaTime);
-        renderer.render(scene, camera);
+        renderer.setAnimationLoop(() => {
+          renderer.render(scene, camera);
+        });
       };
       animate();
     };
