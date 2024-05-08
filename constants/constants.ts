@@ -1,5 +1,3 @@
-import { EmotionBehaviorCode } from "@inworld/web-core";
-
 export const meimei_0 = {
   label: "meimei_0",
   src: "/assets/videos/meimei_0.mp4"
@@ -24,25 +22,26 @@ export const COUNTDOWN_ID = 'timer_countdown_id';
 export const COUNTDOWN_REMAINING_SECONDS = 'timer_countdown_remaining_seconds';
 
 export const MEIMEI_ANIMATIONS: { [key: string]: string } = {
-  NEUTRAL: "Intro.vrma",
-  DISGUST: "talk.vrma",
-  CONTEMPT: "boxing1.vrma",
-  BELLIGERENCE: "thankful1.vrma",
-  DOMINEERING: "sitpoint.vrma",
-  CRITICISM: "sad.vrma",
+  DEFAULT: "idle.vrma",
+  INTRO: "Intro.vrma",
+  AFFECTION: "chestpat.vrma",
   ANGER: "angry.vrma",
-  TENSION: "VRMA_01.vrma",
-  TENSE_HUMOR: "VRMA_04.vrma",
-  DEFENSIVENESS: "VRMA_03.vrma",
-  WHINING: "idle2.vrma",
-  SADNESS: "VRMA_05.vrma",
-  STONEWALLING: "VRMA_02.vrma",
-  INTEREST: "chestpat.vrma",
-  VALIDATION: "idle1.vrma",
-  AFFECTION: "bow.vrma",
-  HUMOR: "VRMA_07.vrma",
-  SURPRISE: "VRMA_06.vrma",
-  JOY: "happy.vrma"
+  BELLIGERENCE: "boxing.vrma",
+  CONTEMPT: "loser.vrma",
+  CRITICISM: "angrypoint.vrma",
+  DEFENSIVENESS: "bashful.vrma",
+  DISGUST: "standing_arguing.vrma",
+  DOMINEERING: "talk.vrma",
+  HUMOR: "talk.vrma",
+  INTEREST: "talk.vrma",
+  JOY: "happy.vrma",
+  SADNESS: "sad.vrma",
+  STONEWALLING: "angry.vrma",
+  SURPRISE: "surprised.vrma",
+  TENSE: "nervously_look_around.vrma",
+  TENSION: "nervously_look_around.vrma",
+  VALIDATION: "head_nod_yes.vrma",
+  WHINING: "talking_whining.vrma"
 }
 
 export const EMOJIS: { [key: string]: string[] } = {
