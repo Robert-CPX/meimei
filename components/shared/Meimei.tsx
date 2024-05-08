@@ -10,10 +10,11 @@ import { useMeimei } from '@/context/MeimeiProvider';
 import { getAnimation } from '@/lib/utils';
 
 const Meimei = () => {
-  const mount = useRef<HTMLDivElement>(null);
-  const mixer = useRef<THREE.AnimationMixer | null>(null);
+  const mountRef = useRef<HTMLDivElement>(null);
+  const mixerRef = useRef<THREE.AnimationMixer | null>(null);
   const vrmRef = useRef<any>(null); // Use a more specific type for your VRM model
   const gltfLoaderRef = useRef<GLTFLoader>(new GLTFLoader());  // Ref for GLTFLoader
+  const mainAnimationRef = useRef<THREE.AnimationAction | null>(null);
   const { emotion } = useMeimei();
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const Meimei = () => {
   useEffect(() => {
     const scene = new THREE.Scene();
 
+    // load background image
     const loader = new THREE.TextureLoader();
     loader.load('emi/background.jpg', function (texture) {
       texture.minFilter = THREE.LinearFilter;
@@ -34,15 +36,15 @@ const Meimei = () => {
     const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    mount.current?.appendChild(renderer.domElement);
+    mountRef.current?.appendChild(renderer.domElement);
     camera.position.set(0, 1.3, 1);
     renderer.setClearColor(0x99ddff);
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.target.set(0, 1.3, 0);
+    controls.target.set(0, 0.9, 0);
     controls.update();
 
-    const light = new THREE.AmbientLight(0xffffff, 2); // soft white light
-    scene.add(light);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 2); // soft white light
+    scene.add(ambientLight);
 
     const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
     directionalLight.position.set(0, 5, 3);
@@ -51,7 +53,7 @@ const Meimei = () => {
     gltfLoaderRef.current.register((parser) => new VRMLoaderPlugin(parser));
     gltfLoaderRef.current.register((parser) => new VRMAnimationLoaderPlugin(parser));
 
-    const init = async () => {
+    const initVRMScene = async () => {
       const gltfVrm = await gltfLoaderRef.current.loadAsync('emi/emi.vrm');
       const vrm = gltfVrm.userData.vrm;
       vrmRef.current = vrm; // Store the VRM for future reference
@@ -64,30 +66,54 @@ const Meimei = () => {
       vrm.scene.add(lookAtQuatProxy);
       const lookAtTarget = new THREE.Object3D();
       camera.add(lookAtTarget);
-      scene.add(vrm.scene);
       vrm.lookAt.target = lookAtTarget;
+      scene.add(vrm.scene);
 
-      mixer.current = new THREE.AnimationMixer(vrm.scene);
+      mixerRef.current = new THREE.AnimationMixer(vrm.scene);
       const clock = new THREE.Clock();
 
       // Load and play the intro animation immediately after the VRM is loaded
       const gltfVrma = await gltfLoaderRef.current.loadAsync('emi/emotions/Intro.vrma');
       const vrmAnimation = gltfVrma.userData.vrmAnimations[0];
       const introClip = createVRMAnimationClip(vrmAnimation, vrm);
-      const action = mixer.current.clipAction(introClip);
-      action.play();
+      mainAnimationRef.current = mixerRef.current.clipAction(introClip);
+      mainAnimationRef.current.play();
+
+      //load pencil
+      const gltfPencil = await gltfLoaderRef.current.loadAsync('emi/objects/pencil.glb');
+      const pencil = gltfPencil.scene;
+      scene.add(pencil);
+      const boneToAttachTo = vrm.humanoid.getBoneNode('rightThumbDistal');
+      boneToAttachTo.add(pencil);
+      const relativeOffsetPosition = new THREE.Vector3(0, -0.02, 0.01);
+      const relativeOffsetRotation = new THREE.Euler(Math.PI / 4, 0, 0, 'XYZ');
+      pencil.rotation.setFromVector3(relativeOffsetRotation as any);
+      pencil.position.copy(relativeOffsetPosition);
+      boneToAttachTo.updateMatrixWorld(true);
+
+      // load chair
+      const gltfChair = await gltfLoaderRef.current.loadAsync('emi/objects/chair.glb');
+      scene.add(gltfChair.scene);
+
+      // load desk
+      const gltfDesk = await gltfLoaderRef.current.loadAsync('emi/objects/desk.glb');
+      scene.add(gltfDesk.scene);
+
+      // load table top items
+      const gltfTableTopItems = await gltfLoaderRef.current.loadAsync('emi/objects/table-top.glb');
+      scene.add(gltfTableTopItems.scene);
 
       const animate = () => {
         requestAnimationFrame(animate);
         const deltaTime = clock.getDelta();
-        mixer.current?.update(deltaTime);
+        mixerRef.current?.update(deltaTime);
         vrm.update(deltaTime);
         renderer.render(scene, camera);
       };
       animate();
     };
 
-    init();
+    initVRMScene();
 
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -100,7 +126,7 @@ const Meimei = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      mount.current?.removeChild(renderer.domElement);
+      mountRef.current?.removeChild(renderer.domElement);
     };
   }, []);
 
@@ -113,16 +139,21 @@ const Meimei = () => {
       const vrmAnimation = gltfVrma.userData.vrmAnimations[0];
       const clip = createVRMAnimationClip(vrmAnimation, vrmRef.current);
 
-      if (mixer.current) {
-        const action = mixer.current.clipAction(clip);
-        action.play();
+      if (mainAnimationRef.current) {
+        mainAnimationRef.current.stop();
       }
+
+      if (!mixerRef.current) {
+        throw new Error('mixerRef.current is not found.');
+      }
+      mainAnimationRef.current = mixerRef.current?.clipAction(clip);
+      mainAnimationRef.current.play();
     } catch (error) {
       console.error('Failed to load or play the animation:', error);
     }
   };
 
-  return <div ref={mount} />;
+  return <div ref={mountRef} />;
 };
 
 export default Meimei;
